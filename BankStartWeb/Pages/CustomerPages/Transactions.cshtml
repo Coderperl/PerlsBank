@@ -1,0 +1,29 @@
+﻿@page
+@model BankStartWeb.Pages.TransactionsModel
+@{
+}
+<h1>Transactions</h1>
+<table class="table">
+    <tr>
+        <th>Card type</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Balance</th>
+        <th>Transaction type</th>
+    </tr>
+    @foreach (var transaction in Model.Account.Transactions)
+    {
+        <tr>
+            <td>@transaction.Type</td>
+            <td>@transaction.Date</td>
+            <td>@transaction.Amount</td>
+            <td>@transaction.NewBalance</td>
+            <td>@transaction.Operation</td>
+        </tr>
+    }
+    
+</table>
+
+    <a asp-page="/CustomerPages/Customer" asp-route-customerId ="@Model.Customer.Id">Back to customer</a>
+
+
