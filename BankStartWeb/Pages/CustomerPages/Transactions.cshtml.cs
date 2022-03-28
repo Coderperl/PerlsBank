@@ -20,10 +20,13 @@ namespace BankStartWeb.Pages
             public string Operation { get; set; }
             public DateTime Date { get; set; }
             public decimal Amount { get; set; }
+            public decimal NewBalance { get; set; }
         }
-       
+        public int CustomerReference { get; set; }
+
         public Account Account { get; set; }
         
+        public List<Customer> Customers { get; set; }
         public Customer Customer { get; set; }
         public List<TransactionsViewModel> Transactions { get; set; } 
         public void OnGet(int accountId, int customerId)
@@ -37,9 +40,18 @@ namespace BankStartWeb.Pages
                 Operation = t.Operation,
                 Amount = t.Amount,
                 Date = t.Date,
+                NewBalance = t.NewBalance
+
 
             }).ToList();
+            CustomerReference = customerId;
+            
+        }
+        public IActionResult OnPostCustomer(int customerId)
+        {
             Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);
+
+            return RedirectToPage("CustomerPages/Customer", new {customerId});
         }
     }
 }

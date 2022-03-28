@@ -11,7 +11,7 @@
         <th>Balance</th>
         <th>Transaction type</th>
     </tr>
-    @foreach (var transaction in Model.Account.Transactions)
+    @foreach (var transaction in Model.Transactions)
     {
         <tr>
             <td>@transaction.Type</td>
@@ -23,7 +23,7 @@
     }
     
 </table>
-
-    <a asp-page="/CustomerPages/Customer" asp-route-customerId ="@Model.Customer.Id">Back to customer</a>
-
+  
+    <a asp-page="/CustomerPages/Customer" asp-route-customerId ="@Model.CustomerReference">Back to customer</a>
+ 
 

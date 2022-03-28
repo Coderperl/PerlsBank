@@ -21,13 +21,14 @@
     </tr>
 
 
-@foreach(var account in Model.Customer.Accounts)
+@foreach(var account in Model.Accounts)
     {
         <tr>
+           
             <td>@account.AccountType</td>
             <td>@account.Balance</td>
             <td>@account.Created</td>
-            <td><a asp-page="/CustomerPages/Transactions" asp-route-accountId="@account.Id">View</a></td>
+            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId ="@account.CustomerId" asp-route-accountId="@account.Id">View</a></td>
         </tr>
     }
 </table>

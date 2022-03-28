@@ -28,10 +28,12 @@ namespace BankStartWeb.Pages
 
         public class AccountViewModel
         {
+            public int CustomerId { get; set; }
             public int Id { get; set; }
             public string AccountType { get; set; }
             public DateTime Created { get; set; }
             public decimal Balance { get; set; }
+
             public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         }
@@ -51,6 +53,8 @@ namespace BankStartWeb.Pages
                 Id = a.Id,
                 AccountType = a.AccountType,
                 Balance = a.Balance,
+                Created = a.Created,
+                CustomerId = customerId,
 
             }).ToList();
 
