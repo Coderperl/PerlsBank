@@ -43,10 +43,13 @@ namespace BankStartWeb.Pages
                 NewBalance = t.NewBalance
 
 
-            }).ToList();
+            }).ToList().OrderByDescending(x => x.Date).ToList();
             CustomerReference = customerId;
             
         }
+
+
+        //Products = prodAccess.LoadAll().ToList().OrderBy(p => p.ProductPrice).ToList();
         public IActionResult OnPostCustomer(int customerId)
         {
             Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);

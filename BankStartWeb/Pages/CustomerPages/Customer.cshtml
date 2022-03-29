@@ -2,7 +2,7 @@
 @model BankStartWeb.Pages.CustomerModel
 @{
 }
-<h1>Welcome @Model.Customer.Givenname @Model.Customer.Surname</h1>
+<h1>Customer @Model.Customer.Givenname @Model.Customer.Surname</h1>
 <p>Address: @Model.Customer.Streetaddress</p>
 <p>City: @Model.Customer.City</p>
 <p>Zip: @Model.Customer.Zipcode</p>
@@ -14,21 +14,34 @@
 <p>Birth date: @Model.Customer.Birthday</p>
 <table class="table">
     <tr>
+        <th>Account Number</th>
         <th>Account type</th>
         <th>Account balance</th>
         <th>Account created</th>
         <th>Account Transactions</th>
     </tr>
 
-
-@foreach(var account in Model.Accounts)
+    @{
+       decimal sum = 0;
+    }
+    @foreach(var account in Model.Accounts)
     {
+        sum += account.Balance;
         <tr>
-           
+            <td>@account.Id</td>
             <td>@account.AccountType</td>
             <td>@account.Balance</td>
             <td>@account.Created</td>
             <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId ="@account.CustomerId" asp-route-accountId="@account.Id">View</a></td>
         </tr>
+        
     }
+    <tr>
+        <th>Total Balance</th>
+    </tr>
+        <tr>
+            <td>
+                @sum.ToString("C")
+            </td>
+        </tr>
 </table>

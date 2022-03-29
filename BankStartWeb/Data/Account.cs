@@ -6,7 +6,6 @@ public class Account
 {
     public int Id { get; set; }
 
-
     [MaxLength(10)]
     public string AccountType { get; set; }
 
