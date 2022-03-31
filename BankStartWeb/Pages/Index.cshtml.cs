@@ -24,8 +24,7 @@ namespace BankStartWeb.Pages
             Accounts = _context.Accounts.Include(t => t.Transactions).Select(a => new Account
             {
                 Balance = a.Balance,
-            })
-                .ToList();
+            }).ToList();
             
                 
         }
