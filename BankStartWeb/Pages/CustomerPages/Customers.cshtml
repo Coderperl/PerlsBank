@@ -3,18 +3,67 @@
 @{
 }
 <h1>Customers</h1>
+<form method="post" asp-action="/CustomerPages/Customer" asp-page-handler="CustomerPages">
+    <input asp-for="@Model.SSN" />
+    @foreach(var cust in Model.Customers)
+    {
+        <input type="hidden" asp-route-natinalId="cust"/>
+    }
+    
+    <input type="submit"/>
+</form>
+
+<form method="get">
+    <input asp-for="@Model.Searchterm"/>
+    <input type="submit" value="search"/>
+
+</form>
 <table class="table">
 <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>City</th>
-    <th>StreetAddress</th>
+    <th>Customer number
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>
+    </th>
+    <th>Social security number
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="NationalId" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="NationalId" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>
+    </th>
+    <th>Firstname
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="firstname" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="firstname" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>
+    </th>
+    <th>Lastname
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="lastname" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="lastname" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>
+    </th>
+    <th>City
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="city" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="city" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>       
+    </th>
+    <th>StreetAddress
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="address" asp-route-order="asc">
+            <i class='bx bx-sort-up'></i></a>
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="address" asp-route-order="desc">
+            <i class='bx bx-sort-down'></i></a>   
+    </th>
     <th>More details</th>
     
 </tr>
 
     @foreach(var customer in Model.Customers)
     {<tr>
+        <td>@customer.Id</td>
+        <td>@customer.NationalId</td>
         <td>@customer.Givenname</td>
         <td>@customer.Surname</td>
         <td>@customer.City</td>

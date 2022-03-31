@@ -29,16 +29,99 @@ namespace BankStartWeb.Pages
         }
         private readonly ApplicationDbContext context;
         public List<CustomersViewModel> Customers = new List<CustomersViewModel>();
-        
+        public string Searchterm { get; set; }
+        public string SSN { get; set; }
+
         public CustomersModel(ApplicationDbContext _context)
         {
             context = _context;
         }
-        public void OnGet()
+        public void OnGet(string searchterm, string col="id", string order ="asc")
         {
-            Customers = context.Customers.Take(30).Select(c => new CustomersViewModel
+            var cust = context.Customers.AsQueryable();
+            Searchterm = searchterm;
+            if (!string.IsNullOrEmpty(Searchterm))
+                cust = cust.Where(word => word.Givenname.Contains(Searchterm)
+                || word.Surname.Contains(Searchterm)
+                || word.City.Contains(Searchterm));
+
+            else if (col == "id")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.Id);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.Id);
+                }
+
+            }
+            else if (col == "NationalId")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.NationalId);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.NationalId);
+                }
+
+            }
+            else if (col == "firstname")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.Givenname);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.Givenname);
+                }
+
+            }
+            else if (col == "lastname")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.Surname);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.Surname);
+                }
+
+            }
+            else if (col == "city")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.City);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.City);
+                }
+
+            }
+            else if (col == "address")
+            {
+                if (order == "asc")
+                {
+                    cust = cust.OrderBy(word => word.Streetaddress);
+                }
+                else
+                {
+                    cust = cust.OrderByDescending(word => word.Streetaddress);
+                }
+
+            }
+
+            Customers = cust.Take(30).Select(c => new CustomersViewModel
             {
                 Id = c.Id,
+                NationalId = c.NationalId,
                 Givenname = c.Givenname,
                 Surname = c.Surname,
                 EmailAddress = c.EmailAddress,
@@ -47,6 +130,12 @@ namespace BankStartWeb.Pages
                 
             }).ToList();
         }
+
+        //public IActionResult OnPostCustomerPage(string SSN)
+        //{
+           
+
+        //}
         
     }
 }

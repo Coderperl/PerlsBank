@@ -11,18 +11,20 @@
 
         <th>Card type</th>
         <th>Date</th>
+        <th>Transaction type</th>
         <th>Amount</th>
         <th>Balance</th>
-        <th>Transaction type</th>
+        
     </tr>
     @foreach (var transaction in Model.Transactions)
     {
         <tr>
             <td>@transaction.Type</td>
             <td>@transaction.Date</td>
+            <td>@transaction.Operation</td>
             <td>@transaction.Amount</td>
             <td>@transaction.NewBalance</td>
-            <td>@transaction.Operation</td>
+            
         </tr>
     }
     

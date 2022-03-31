@@ -25,8 +25,6 @@ namespace BankStartWeb.Pages
         public int CustomerReference { get; set; }
 
         public Account Account { get; set; }
-        
-        public List<Customer> Customers { get; set; }
         public Customer Customer { get; set; }
         public List<TransactionsViewModel> Transactions { get; set; } 
         public void OnGet(int accountId, int customerId)
@@ -45,11 +43,8 @@ namespace BankStartWeb.Pages
 
             }).ToList().OrderByDescending(x => x.Date).ToList();
             CustomerReference = customerId;
-            
         }
 
-
-        //Products = prodAccess.LoadAll().ToList().OrderBy(p => p.ProductPrice).ToList();
         public IActionResult OnPostCustomer(int customerId)
         {
             Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);

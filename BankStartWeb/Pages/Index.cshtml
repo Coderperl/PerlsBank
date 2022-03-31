@@ -5,6 +5,19 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Statistics</h1>
+    <p>Customers: @Model.Customers.Count()</p>
+    <p>Total Accounts: @Model.Accounts.Count()</p>
+    @{
+        decimal sum = 0;
+    }
+    @foreach(var account in Model.Accounts)
+    {
+        sum += account.Balance;
+        
+    }
+    <p>Total bank funds: @sum.ToString("C")</p>
+
+    
 </div>
+
