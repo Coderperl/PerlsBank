@@ -3,22 +3,22 @@
 @{
 }
 <h1>Customer @Model.Customer.Givenname @Model.Customer.Surname</h1>
+<p><a asp-page="/CustomerPages/Customers">Back to Customers</a></p>
 <p>Address: @Model.Customer.Streetaddress</p>
 <p>City: @Model.Customer.City</p>
 <p>Zip: @Model.Customer.Zipcode</p>
 <p>Country: @Model.Customer.Country</p>
 <p>Country code: @Model.Customer.CountryCode</p>
 <p>NationalId:@Model.Customer.NationalId</p>
-<p>Telephone country code: @Model.Customer.TelephoneCountryCode</p>
 <p>Telephone number: @Model.Customer.Telephone</p>
 <p>Birth date: @Model.Customer.Birthday</p>
+<p>Email Address: @Model.Customer.EmailAddress</p>
 <table class="table">
     <tr>
         <th>Account Number</th>
         <th>Account type</th>
         <th>Account balance</th>
         <th>Account created</th>
-        <th>Account Transactions</th>
     </tr>
 
     @{
@@ -28,13 +28,12 @@
     {
         sum += account.Balance;
         <tr>
-            <td>@account.Id</td>
+            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId ="@account.CustomerId" asp-route-accountId="@account.Id">@account.Id</a></td>
             <td>@account.AccountType</td>
             <td>@account.Balance</td>
             <td>@account.Created</td>
-            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId ="@account.CustomerId" asp-route-accountId="@account.Id">View</a></td>
         </tr>
-        
+
     }
     <tr>
         <th>Total Balance</th>
