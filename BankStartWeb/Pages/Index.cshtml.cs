@@ -11,6 +11,7 @@ namespace BankStartWeb.Pages
         private readonly ApplicationDbContext _context;
         public List<Customer> Customers { get; set; }
         public List<Account> Accounts { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
@@ -20,8 +21,9 @@ namespace BankStartWeb.Pages
 
         public void OnGet()
         {
-            Customers = _context.Customers.Select(Accounts => new Customer()).ToList();
-            Accounts = _context.Accounts.Include(t => t.Transactions).Select(a => new Account
+            Customers = _context.Customers.Select(c => new Customer()).ToList();
+            Transactions = _context.Transactions.Select(t => new Transaction()).ToList();
+            Accounts = _context.Accounts.Select(a => new Account
             {
                 Balance = a.Balance,
             }).ToList();

@@ -3,7 +3,7 @@
 @{
 }
 <h1>Customers</h1>
-<form method="post" asp-action="/CustomerPages/Customer" asp-page-handler="CustomerPages">
+@*<form method="post" asp-action="/CustomerPages/Customer" asp-page-handler="CustomerPages">
     <input asp-for="@Model.SSN" />
     @foreach(var cust in Model.Customers)
     {
@@ -11,7 +11,7 @@
     }
     
     <input type="submit"/>
-</form>
+</form>*@
 
 <form method="get">
     <input asp-for="@Model.Searchterm"/>
@@ -33,27 +33,27 @@
             <i class='bx bx-sort-down'></i></a>
     </th>
     <th>Firstname
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="firstname" asp-route-order="asc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Givenname" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="firstname" asp-route-order="desc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Givenname" asp-route-order="desc">
             <i class='bx bx-sort-down'></i></a>
     </th>
     <th>Lastname
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="lastname" asp-route-order="asc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Surname" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="lastname" asp-route-order="desc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Surname" asp-route-order="desc">
             <i class='bx bx-sort-down'></i></a>
     </th>
     <th>City
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="city" asp-route-order="asc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="City" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="city" asp-route-order="desc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="City" asp-route-order="desc">
             <i class='bx bx-sort-down'></i></a>       
     </th>
     <th>StreetAddress
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="address" asp-route-order="asc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Streetaddress" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
-        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="address" asp-route-order="desc">
+        <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="Streetaddress" asp-route-order="desc">
             <i class='bx bx-sort-down'></i></a>   
     </th>
     <th>More details</th>
@@ -71,5 +71,28 @@
         <td><a asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a></td>
      </tr>
     }
+
+    <tr>
+        <td>
+            @if(Model.PageNo > 1)
+            {
+                <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo-1)">Prev</a>
+            }
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+        </td>
+        <td>Visar sidan @Model.PageNo av totalt @Model.TotalPageCount</td>
+        <td>
+           
+            @if(Model.PageNo > Model.TotalPageCount)
+            {
+                <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)">Next</a>
+            }
+        </td>
+        </td>
+    </tr>w
     </table>
 
