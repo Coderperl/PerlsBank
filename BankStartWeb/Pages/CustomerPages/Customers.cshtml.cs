@@ -40,7 +40,7 @@ namespace BankStartWeb.Pages
         {
             context = _context;
         }
-        public void OnGet(string searchterm, string col="id", string order ="asc", int pageno =1)
+        public void OnGet(string searchterm, string col="id", string order ="asc", int pageno = 1)
         {
 
             Searchterm = searchterm;

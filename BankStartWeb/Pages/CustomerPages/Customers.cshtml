@@ -74,25 +74,22 @@
 
     <tr>
         <td>
+
             @if(Model.PageNo > 1)
             {
-                <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo-1)">Prev</a>
+               <td> <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo-1)">Prev</a></td>
             }
         </td>
         <td></td>
-        <td></td>
+        <td>Page@Model.PageNo of @Model.TotalPageCount</td>
         <td></td>
         <td>
-        </td>
-        <td>Visar sidan @Model.PageNo av totalt @Model.TotalPageCount</td>
-        <td>
-           
-            @if(Model.PageNo > Model.TotalPageCount)
+            @if(Model.PageNo < Model.TotalPageCount)
             {
-                <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)">Next</a>
+                <td><a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)">Next</a></td>
             }
         </td>
         </td>
-    </tr>w
+    </tr>
     </table>
 
