@@ -2,11 +2,11 @@
     scroll-behavior:smooth;
 }
 body {
-    background-image: linear-gradient(0.70turn,#7485b0,#99a9d1, #ffffff);
+    background-image: linear-gradient(#4a668e,#99a9d1, #ffffff);
 }
 
 .bg-img {
-    background: url("../images/about/nordic.jpg") no-repeat;
+    background: url("../images/about/Scand.jpg") no-repeat;
     background-size: cover;
     background-position: 10% 0%;
     padding: 200px 0 280px 0;
