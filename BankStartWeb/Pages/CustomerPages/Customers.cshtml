@@ -11,9 +11,11 @@
     <input class="btn btn-primary px-3 py-2 border-0 rounded" type="submit" value="search"/>
 
 </form>
-<table class="table table-striped col-sm-10">
+
+<table class="table table-striped table-responsive">
+    <div class="container2 col-auto w-auto">
 <tr>
-    <th class="">Customer number
+    <th class="col-span-2">Customer number
         <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
         <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="desc">
@@ -61,7 +63,7 @@
         <td>@customer.Surname</td>
         <td>@customer.City</td>
         <td>@customer.Streetaddress</td>
-        <td><a asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a></td>
+        <td><a class="btn btn-primary p-1 btn-round" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a></td>
      </tr>
     }
 
@@ -70,7 +72,7 @@
 
             @if(Model.PageNo > 1)
             {
-               <td> <a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo-1)">Prev</a></td>
+               <td> <a class="btn btn-primary p-1 btn-round" asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo-1)">Prev</a></td>
             }
         </td>
         <td></td>
@@ -78,12 +80,13 @@
         <td>
             @if(Model.PageNo < Model.TotalPageCount)
             {
-                <td><a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)">Next</a></td>
+                <td><a class="btn btn-primary p-1 btn-round" asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)" >Next</a></td>
             }
         </td>
         
         <td></td>
         
     </tr>
+    </div>
     </table>
 

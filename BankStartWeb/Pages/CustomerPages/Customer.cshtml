@@ -2,45 +2,60 @@
 @model BankStartWeb.Pages.CustomerModel
 @{
 }
-<h1>Customer @Model.Customer.Givenname @Model.Customer.Surname</h1>
-<p><a asp-page="/CustomerPages/Customers">Back to Customers</a></p>
-<p>Address: @Model.Customer.Streetaddress</p>
-<p>City: @Model.Customer.City</p>
-<p>Zip: @Model.Customer.Zipcode</p>
-<p>Country: @Model.Customer.Country</p>
-<p>Country code: @Model.Customer.CountryCode</p>
-<p>NationalId:@Model.Customer.NationalId</p>
-<p>Telephone number: @Model.Customer.Telephone</p>
-<p>Birth date: @Model.Customer.Birthday</p>
-<p>Email Address: @Model.Customer.EmailAddress</p>
-<table class="table">
-    <tr>
-        <th>Account Number</th>
-        <th>Account type</th>
-        <th>Account balance</th>
-        <th>Account created</th>
-    </tr>
+<a class="btn-primary btn-round p-2 d-flex justify-content-center" asp-page="/CustomerPages/Customers">Return to Customers</a>
+<div class="container ">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-lg-5">
+            <div class="bg-white p-5 rounded mt-5 ">
+                <h1><strong>Customer</strong> @Model.Customer.Givenname @Model.Customer.Surname</h1>
+                <p><strong>Address:</strong> @Model.Customer.Streetaddress</p>
+                <p><strong>City:</strong> @Model.Customer.City</p>
+                <p><strong>Zip:</strong> @Model.Customer.Zipcode</p>
+                <p><strong>Country</strong>: @Model.Customer.Country</p>
+                <p><strong>Country code:</strong> @Model.Customer.CountryCode</p>
+                <p><strong>NationalId:</strong>@Model.Customer.NationalId</p>
+                <p><strong>Telephone number:</strong> @Model.Customer.Telephone</p>
+                <p><strong>Birth date:</strong> @Model.Customer.Birthday</p>
+                <p><strong>Email Address:</strong> @Model.Customer.EmailAddress</p>
+                
+                <table class="">
 
-    @{
-       decimal sum = 0;
-    }
-    @foreach(var account in Model.Accounts)
-    {
-        sum += account.Balance;
-        <tr>
-            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId ="@account.CustomerId" asp-route-accountId="@account.Id">@account.Id</a></td>
-            <td>@account.AccountType</td>
-            <td>@account.Balance</td>
-            <td>@account.Created</td>
-        </tr>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Account type</th>
+                        <th>Account balance</th>
+                        <th>Account created</th>
+                    </tr>
 
-    }
-    <tr>
-        <th>Total Balance</th>
-    </tr>
-        <tr>
-            <td>
-                @sum.ToString("C")
-            </td>
-        </tr>
-</table>
+                    @{
+                        decimal sum = 0;
+                    }
+                    @foreach (var account in Model.Accounts)
+                    {
+                        sum += account.Balance;
+                        <tr>
+                            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId="@account.CustomerId" asp-route-accountId="@account.Id">@account.Id</a></td>
+                            <td>@account.AccountType</td>
+                            <td>@account.Balance</td>
+                            <td>@account.Created</td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <th>Total Balance</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @sum.ToString("C")
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
