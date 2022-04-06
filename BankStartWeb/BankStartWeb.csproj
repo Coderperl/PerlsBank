@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\maps\style.css.map" />
+    <Content Remove="wwwroot\images\about\nordic.jpg" />
   </ItemGroup>
 
   <ItemGroup>
