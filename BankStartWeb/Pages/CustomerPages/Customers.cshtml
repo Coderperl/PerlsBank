@@ -2,25 +2,18 @@
 @model BankStartWeb.Pages.CustomersModel
 @{
 }
-<h1>Customers</h1>
-@*<form method="post" asp-action="/CustomerPages/Customer" asp-page-handler="CustomerPages">
-    <input asp-for="@Model.SSN" />
-    @foreach(var cust in Model.Customers)
-    {
-        <input type="hidden" asp-route-natinalId="cust"/>
-    }
-    
-    <input type="submit"/>
-</form>*@
 
-<form method="get">
-    <input asp-for="@Model.Searchterm"/>
-    <input type="submit" value="search"/>
+<div class="container">
+    <h1>Customers</h1>
+
+<form method="get" >
+    <input class="border-0 rounded px-5 mr-2 mb-5 " asp-for="@Model.Searchterm"/>
+    <input class="btn btn-primary px-3 py-2 border-0 rounded" type="submit" value="search"/>
 
 </form>
-<table class="table">
+<table class="table table-striped col-sm-10">
 <tr>
-    <th>Customer number
+    <th class="">Customer number
         <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="asc">
             <i class='bx bx-sort-up'></i></a>
         <a asp-page ="/CustomerPages/Customers" asp-route-searchterm="@Model.Searchterm" asp-route-col="id" asp-route-order="desc">
@@ -57,7 +50,7 @@
             <i class='bx bx-sort-down'></i></a>   
     </th>
     <th>More details</th>
-    
+    </div>
 </tr>
 
     @foreach(var customer in Model.Customers)
@@ -81,15 +74,16 @@
             }
         </td>
         <td></td>
-        <td>Page@Model.PageNo of @Model.TotalPageCount</td>
-        <td></td>
+        <td>@Model.PageNo of @Model.TotalPageCount</td>
         <td>
             @if(Model.PageNo < Model.TotalPageCount)
             {
                 <td><a asp-page="/CustomerPages/Customers" asp-route-col="@Model.SortCol" asp-route-order="@Model.SortOrder" asp-route-searchterm="@Model.Searchterm" asp-route-pageno="@(Model.PageNo+1)">Next</a></td>
             }
         </td>
-        </td>
+        
+        <td></td>
+        
     </tr>
     </table>
 

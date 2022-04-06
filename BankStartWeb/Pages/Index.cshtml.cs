@@ -18,7 +18,17 @@ namespace BankStartWeb.Pages
             _logger = logger;
             _context = context;
         }
-
+        public decimal GetSum()
+        {
+            decimal sum = 0;
+            foreach(var account in Accounts)
+            {
+                sum += account.Balance;
+            }
+            return Math.Round(sum);
+                
+                
+        }
         public void OnGet()
         {
             Customers = _context.Customers.Select(c => new Customer()).ToList();

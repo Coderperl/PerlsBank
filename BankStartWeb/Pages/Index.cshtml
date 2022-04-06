@@ -1,24 +1,163 @@
 ﻿@page
+@using System.Globalization
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+<div class="main-wrapper ">
+	<div class="header-top">
+		<div class="container2">
+			<div class="row align-items-center">
+				<div class="col-lg-2 col-md-4">
+					<div class="header-top-socials ml-5">
+						<a href="#index_about">About</a>
+						<a href="#index_stats">Statistics</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<section class="bg-img">
+	<div class="container2 ">
+		<div class="row justify-content-center">
+			<div class="col-lg-9 col-md-10 ">
+				<div class="block">
+					<span class="d-block mb-3 text-white text-capitalize">Generic wise finacial statement</span>
+					<h1 class="animated fadeInUp mb-5">Our Bank will <br>Revolutionize the financial state of <br>Scandinavia</h1>
+					<a asp-page="/CustomerPages/Customers" class="btn btn-primary animated fadeInUp btn-round-full" >Manage Customers<i class="btn-icon fa fa-angle-right ml-2"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+@*Intro*@
+<section id="index_about" class="section intro">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="section-title">
+					<span class="h6	color-four ">Respecting the integrety of our loyal customers</span>
+					<h2 class="mt-3 content-title">We work with our clients & provide financial advice and solutions for their economic goals. </h2>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="intro-item mb-5 mb-lg-0"> 
+					<i class="ti-desktop color-four"></i>
+					<h4 class="mt-4 mb-3">Private & corporate banking</h4>
+					<p>Whatever your saving and investing goals are, we support you.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item mb-5 mb-lg-0">
+					<i class="ti-medall color-four"></i> 
+					<h4 class="mt-4 mb-3">The Banker’s Bank of the Year Awards 2022</h4>
+					<p>The leading bank over the past 12 months in Europe.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="intro-item">
+					<i class="ti-layers-alt color-four"></i>
+					<h4 class="mt-4 mb-3">Easily managed accounts, with 24/7 customer support</h4>
+					<p>Our latest technology makes the userexperience easy and intuitive</p>
+				</div>
+			</div> 
+		</div>
+	</div>
+</section>
+@*Services*@
+<section class="section service border-top">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+				<div class="section-title">
+					<span class="h6 color-four">Our Services</span>
+					<h2 class="mt-3 content-title ">We provide a wide range of financial services </h2>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-5">
+					<i class="ti-wallet color-four"></i>
+					<h4 class="mb-3">Checking accounts</h4>
+					<p>We serve up free interest-bearing checking accounts with no strings attached.</p>
+				</div>
+			</div>
 
-<div class="text-center">
-    <h1 class="display-4">Statistics</h1>
-    <p>Customers: @Model.Customers.Count()</p>
-    <p>Total Accounts: @Model.Accounts.Count()</p>t
-    <p>Total Transactions @Model.Transactions.Count()</p>
-    @{
-        decimal sum = 0;
-    }
-    @foreach(var account in Model.Accounts)
-    {
-        sum += account.Balance;
-        
-    }
-    <p>Total bank funds: @sum.ToString("C")</p>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-5">
+					<i class="ti-time color-four"></i>
+					<h4 class="mb-3">Savings accounts.</h4>
+					<p>Our savings accounts come with a low interest rate, their safety and reliability make them a great option for parking cash you want available for short-term needs.</p>
+				</div>
+			</div>
 
-    
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-5">
+					<i class="ti-credit-card color-four"></i>
+					<h4 class="mb-3">Debit & credit cards</h4>
+					<p>Globally supported cards, that can be used for both withrawals and deposits.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-5 mb-lg-0">
+					<i class="ti-vector color-four"></i>
+					<h4 class="mb-3">Insurance</h4>
+					<p>We offer housing, salary and life insurance.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-5 mb-lg-0">
+					<i class="ti-crown color-four"></i>
+					<h4 class="mb-3">Wealth management</h4>
+					<p>Our management is in world class, speak to your local banker to set up an appointment.</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+<section class="section cta">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5">
+				<div class="cta-item  bg-white p-5 rounded">
+					<span class="h6 text-color">We create for you</span>
+					<h2 class="mt-2 mb-4">Entrust Your Project to Our Best Team of Professionals</h2>
+					<p class="lead mb-4">Have any project on mind? For immidiate support :</p>
+					<h3><i class="ti-mobile mr-3 text-color"></i>+23 876 65 455</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+@*Stats*@
+<section id="index_stats" class="section counter">
+	<h1 class="text-center mb-lg-5 color-four">Current statistics</h1>
+	<div class="container">	
+		<div class="row justify-content-center">
+			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+				<div class="counter-item text-center mb-3 mb-lg-0">
+					<h3 class="mt-3"><span class="counter-stat font-weight-bold">@Model.Customers.Count()</span>+</h3>
+					<p>Pleased customers</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+				<div class="counter-item text-center mb-3 mb-lg-0">
+					<h3 class="mt-3"><span class="counter-stat font-weight-bold">@Model.Accounts.Count()</span></h3>
+					<p>Managed accounts</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+				<div class="counter-item text-center mb-3 mb-lg-0">
+					<h3 class="mt-3"><span class="counter-stat font-weight-bold">@Model.GetSum()</span>Sek</h3>
+					<p>Total bank funds</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</section>
 </div>
-

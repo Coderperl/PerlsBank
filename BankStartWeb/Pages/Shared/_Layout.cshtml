@@ -1,56 +1,86 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BankStartWeb</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BankStartWeb.styles.css" asp-append-version="true" />
+  <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
+  
+
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
+  <link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style2.css">
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BankStartWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
+    <header class="navigation">
+    <nav class="navbar navbar-expand-lg bg-black" id="navbar">
+		<div class="">
+		  <a class="nav-link navbar-brand" asp-area="" asp-page="/Index"><span class="h1">
+             Ban<span class="text-white">Ken.</span></span></a>
+		  
+		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item">
+				<a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+			  </li>
+			  <li class="nav-item">
+					<a class="nav-link" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>
+			  </li>
+              <li>
+			   <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
+               </li>
+
+			</ul>
+		  </div>
+		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars"></span>
+		  </button>
+		</div>
+	</nav>
+</header>
+
+    <div class="container2">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="">
             &copy; 2022 - Per Görtz - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+     <!-- Main jQuery -->
+    <script src="/plugins/jquery/jquery.js"></script>
+    <script src="/js/contact.js"></script>
+    <!-- Bootstrap 4.3.1 -->
+    <script src="/plugins/bootstrap/js/popper.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+   <!--  Magnific Popup-->
+    <script src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <!-- Slick Slider -->
+    <script src="/plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->  
+    <script src="/plugins/counterup/jquery.waypoints.min.js"></script>
+    <script src="/plugins/counterup/jquery.counterup.min.js"></script>
+
+    <script src="/js/script.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

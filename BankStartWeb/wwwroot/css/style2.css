@@ -1,0 +1,23 @@
+﻿html{
+    scroll-behavior:smooth;
+}
+body {
+    background-image: linear-gradient(0.70turn,#7485b0,#99a9d1, #ffffff);
+}
+
+.bg-img {
+    background: url("../images/about/nordic.jpg") no-repeat;
+    background-size: cover;
+    background-position: 10% 0%;
+    padding: 200px 0 280px 0;
+    position: relative;
+    width:100%;
+}
+.container-2 {
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
