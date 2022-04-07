@@ -2,10 +2,13 @@
 @model BankStartWeb.Pages.CustomerModel
 @{
 }
+@{
+                        decimal sum = 0;
+                    }
 <a class="btn-primary btn-round p-2 d-flex justify-content-center" asp-page="/CustomerPages/Customers">Return to Customers</a>
-<div class="container ">
-    <div class="row d-flex justify-content-center ">
-        <div class="col-lg-5">
+<div class="container2">
+    <div class="row d-flex justify-content-center  ">
+        <div class="col-xl-5 ">
             <div class="bg-white p-5 rounded mt-5 ">
                 <h1><strong>Customer</strong> @Model.Customer.Givenname @Model.Customer.Surname</h1>
                 <p><strong>Address:</strong> @Model.Customer.Streetaddress</p>
@@ -17,8 +20,9 @@
                 <p><strong>Telephone number:</strong> @Model.Customer.Telephone</p>
                 <p><strong>Birth date:</strong> @Model.Customer.Birthday</p>
                 <p><strong>Email Address:</strong> @Model.Customer.EmailAddress</p>
+               
                 
-                <table class="">
+                <table class="table table-sm">
 
                     <tr>
                         <th>Account Number</th>
@@ -27,9 +31,7 @@
                         <th>Account created</th>
                     </tr>
 
-                    @{
-                        decimal sum = 0;
-                    }
+                    
                     @foreach (var account in Model.Accounts)
                     {
                         sum += account.Balance;
@@ -41,14 +43,7 @@
                         </tr>
 
                     }
-                    <tr>
-                        <th>Total Balance</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            @sum.ToString("C")
-                        </td>
-                    </tr>
+                     <h1>Total Balance: <span>@sum.ToString("C")</span></h1>
                 </table>
                 
             </div>

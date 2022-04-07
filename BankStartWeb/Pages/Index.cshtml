@@ -4,21 +4,26 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<div class="main-wrapper ">
-	<div class="header-top">
-		<div class="container2">
-			<div class="row align-items-center">
-				<div class="col-lg-2 col-md-4">
-					<div class="header-top-socials ml-5">
-						<a href="#index_about"class="text-white">About</a>
-						<a href="#index_stats"class=" text-white">Statistics</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-<section class="bg-img">
-	<div class="container2 ">
+<div class="main-wrapper">
+<div class="header-top">
+    <div class="container2">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-4">
+                <div class="header-top-socials ml-5 d-flex" >
+                    <a href="#index_home"class="text-white">Home</a>
+                    <a href="#index_about"class="text-white">About</a>
+                    <a href="#index_stats"class="text-white">Statistics</a>
+                    <a href="#index_service"class="text-white">Services</a>
+                    <a href="#index_contact"class="text-white">Contact</a>
+                    <a href="#index_tests"class="text-white">Reviews</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="index_home" class="bg-img">
+	<div class="container2">
 		<div class="row justify-content-center">
 			<div class="col-lg-9 col-md-10 ">
 				<div class="block">
@@ -70,37 +75,39 @@
 
 <section id="index_stats" class="section cta">
 	<div class="container">
-		<<div class="row justify-content-center">
-			<div class="col-lg-3 col-md-6 col-sm-6 rounded m-3 ">
-				<div class="counter-item text-center mb-3 mb-lg-0">
-					<h1 class="text-white">Current Statistics</h1>
-				</div>
-			</div>
-		</div>
-		<div class="row justify-content-center">
-			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-6 rounded m-3 ">
+                <div class="counter-item text-center mb-3 mb-lg-0">
+                    <h1 class="text-white">Current Statistics</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3">
 				
-				<div class="counter-item text-center mb-3 mb-lg-0">
-					<h3 class="mt-3"><span class="counter-stat text-white font-weight-bold">@Model.Customers.Count()</span></h3>
-					<p class="text-white">Pleased customers</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
-				<div class="counter-item text-center mb-3 mb-lg-0">
-					<h3 class="mt-3"><span class="counter-stat text-white font-weight-bold">@Model.Accounts.Count()</span></h3>
-					<p class="text-white">Managed accounts</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
-				<div class="counter-item text-center mb-3 mb-lg-0">
-					<h3 class="mt-3" class="text-white"><span class="counter-stat text-white font-weight-bold">@Model.GetSum()</span></h3>
-					<p class="text-white">Total bank funds</p>
-				</div>
-			</div>
-	</div>
+                <div class="counter-item text-center mb-3 mb-lg-0">
+                    <h3 class="mt-3"><span class="counter-stat text-white font-weight-bold">@Model.Customers.Count()</span></h3>
+                    <p class="text-white">Pleased customers</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+                <div class="counter-item text-center mb-3 mb-lg-0">
+                    <h3 class="mt-3"><span class="counter-stat text-white font-weight-bold">@Model.Accounts.Count()</span></h3>
+                    <p class="text-white">Managed accounts</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 border border-gray rounded m-3 ">
+                <div class="counter-item text-center mb-3 mb-lg-0">
+                    <h3 class="mt-3" class="text-white"><span class="counter-stat text-white font-weight-bold">@Model.GetSum()</span></h3>
+                    <p class="text-white">Total bank funds</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </section>
-<section class="section service border-top">
+<section id="index_service" class="section service border-top">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-7 text-center">
@@ -152,7 +159,7 @@
 		</div>
 	</div>
 </section>
-<section class="section cta">
+<section id="index_contact" class="section cta">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-5">
@@ -167,7 +174,7 @@
 	</div>
 </section>
 @*Stats*@
-<section class="section testimonial">
+<section id="index_tests" class="section testimonial">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 ">

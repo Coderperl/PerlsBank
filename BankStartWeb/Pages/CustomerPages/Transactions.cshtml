@@ -2,34 +2,46 @@
 @model BankStartWeb.Pages.TransactionsModel
 @{
 }
-<h1>Transactions</h1>
-<h4>Account number: @Model.Account.Id</h4>
-<h4>Current Balance: @Model.Account.Balance</h4>
-<h3>Latest Transactions</h3>
-<table class="table">
-    <tr>
 
-        <th>Card type</th>
-        <th>Date</th>
-        <th>Transaction type</th>
-        <th>Amount</th>
-        <th>Balance</th>
-        
-    </tr>
-    @foreach (var transaction in Model.Transactions)
-    {
-        <tr>
-            <td>@transaction.Type</td>
-            <td>@transaction.Date</td>
-            <td>@transaction.Operation</td>
-            <td>@transaction.Amount</td>
-            <td>@transaction.NewBalance</td>
-            
-        </tr>
-    }
-    
-</table>
-  
-    <a asp-page="/CustomerPages/Customer" asp-route-customerId ="@Model.CustomerReference">Back to customer</a>
- 
+
+
+
+<div class="container lg w-100">
+    <div class="row d-flex justify-content-center ">
+        <div>
+            <div class="bg-white p-5 rounded mt-5 ">
+                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Deposit" asp-route-customerId="@Model.CustomerReference"asp-route-accountId="@Model.AccountId">Deposit</a>
+                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Withdrawal" asp-route-customerId="@Model.CustomerReference"asp-route-accountId="@Model.AccountId">Withdrawal</a>
+                <h1>Transactions</h1>
+                <h4>Account number: @Model.Account.Id</h4>
+                <h4>Current Balance: @Model.Account.Balance</h4>
+                <h3>Latest Transactions</h3>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Card type</th>
+                        <th>Date</th>
+                        <th>Transaction type</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                    </tr>
+                    @foreach (var transaction in Model.Transactions)
+                    {
+                        <tr>
+                            <td>@transaction.Type</td>
+                            <td>@transaction.Date</td>
+                            <td>@transaction.Operation</td>
+                            <td>@transaction.Amount</td>
+                            <td>@transaction.NewBalance</td>
+
+                        </tr>
+                    }
+
+                </table>
+                <a class="btn btn-primary btn-round" asp-page="/CustomerPages/Customer" asp-route-customerId="@Model.CustomerReference">Back to customer</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 

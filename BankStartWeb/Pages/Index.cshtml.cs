@@ -26,8 +26,6 @@ namespace BankStartWeb.Pages
                 sum += account.Balance;
             }
             return Math.Round(sum);
-                
-                
         }
         public void OnGet()
         {

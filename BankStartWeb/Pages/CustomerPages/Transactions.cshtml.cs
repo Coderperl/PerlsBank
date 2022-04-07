@@ -24,6 +24,7 @@ namespace BankStartWeb.Pages
         }
         public int CustomerReference { get; set; }
 
+        public int AccountId { get; set; }
         public Account Account { get; set; }
         public Customer Customer { get; set; }
         public List<TransactionsViewModel> Transactions { get; set; } 
@@ -43,6 +44,7 @@ namespace BankStartWeb.Pages
 
             }).ToList().OrderByDescending(x => x.Date).ToList();
             CustomerReference = customerId;
+            AccountId = accountId;
         }
 
         public IActionResult OnPostCustomer(int customerId)
