@@ -3,6 +3,7 @@
 }
 body {
     background-image: linear-gradient(#3b5a81,#4a668e,#99a9d1, #ffffff);
+    background-repeat: repeat-y;
 }
 
 .bg-img {
@@ -19,5 +20,4 @@ body {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    
 }
