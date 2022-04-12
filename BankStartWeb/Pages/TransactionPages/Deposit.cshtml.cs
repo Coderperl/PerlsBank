@@ -48,7 +48,8 @@ namespace BankStartWeb.Pages.Transactions
                     Type = Type,
                     NewBalance = Account.Balance + Amount
                 });
-                Account.Balance = Account.Balance + Amount;
+                Account.Balance += Amount;
+                
                 _context.SaveChanges();
             }
 
