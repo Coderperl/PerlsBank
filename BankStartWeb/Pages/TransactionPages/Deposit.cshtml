@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="d-flex" asp-for="Amount">Amount</label>
                         <input asp-for="Amount" class="form-group"/>
-                        <span asp-validation-for="Amount"></span>
+                        <span class="d-block text-danger" asp-validation-for="Amount"></span>
                     </div>
                     <button class="btn btn-primary p-3 btn-round" type="submit" asp-route-customerId="@Model.CustomerId"asp-route-accountId="@Model.AccountId">Make deposit</button>
                 </form>

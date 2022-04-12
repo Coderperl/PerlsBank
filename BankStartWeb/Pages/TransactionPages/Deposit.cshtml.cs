@@ -19,6 +19,7 @@ namespace BankStartWeb.Pages.Transactions
 
         public string Operation { get; set; }
         public string Type { get; set; }
+        [Range(100, Int16.MaxValue, ErrorMessage = "Please deposit an amount not less than 100")]
         public decimal Amount { get; set; }
         public int CustomerId { get; set; }
         public int AccountId { get; set; }
@@ -48,12 +49,28 @@ namespace BankStartWeb.Pages.Transactions
                     Type = Type,
                     NewBalance = Account.Balance + Amount
                 });
+                if (Amount < 100)
+                {
+                    ModelState.AddModelError(nameof(Amount),
+                        "Enter amount bigger than or 100");
+                    SetSelectLists();
+                    return Page();
+                }
                 Account.Balance += Amount;
                 
                 _context.SaveChanges();
+                return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
+            SetSelectLists();
+            return Page();
 
-            return RedirectToPage("/CustomerPages/Customer", new {customerId});
+            //if (withdrawal.NewBalance < 0)
+            //{
+            //    ModelState.AddModelError(nameof(Amount),
+            //        "Insufficient funds");
+            //    SetSelectLists();
+            //    return Page();
+            //}
         }
         public void SetSelectLists()
         {

@@ -53,13 +53,22 @@ public class WithdrawalModel : PageModel
                 SetSelectLists();
                 return Page();
             }
+            if (Amount < 100)
+            {
+                ModelState.AddModelError(nameof(Amount),
+                    "Please enter an amount of 100 or more");
+                SetSelectLists();
+                return Page();
+            }
 
             Account.Transactions.Add(withdrawal);
             Account.Balance -= Amount;
             _context.SaveChanges();
+            return RedirectToPage("/CustomerPages/Customer", new { customerId });
         }
+        SetSelectLists();
+        return Page();
 
-        return RedirectToPage("/CustomerPages/Customer", new { customerId });
     }
 
     public void SetSelectLists()
