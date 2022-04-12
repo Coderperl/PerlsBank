@@ -10,8 +10,9 @@
     <div class="row d-flex justify-content-center ">
         <div>
             <div class="bg-white p-5 rounded mt-5 ">
-                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Deposit" asp-route-customerId="@Model.CustomerReference"asp-route-accountId="@Model.AccountId">Deposit</a>
-                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Withdrawal" asp-route-customerId="@Model.CustomerReference"asp-route-accountId="@Model.AccountId">Withdrawal</a>
+                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Deposit" asp-route-customerId="@Model.CustomerReference" asp-route-accountId="@Model.AccountId">Deposit</a>
+                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Withdrawal" asp-route-customerId="@Model.CustomerReference" asp-route-accountId="@Model.AccountId">Withdrawal</a>
+                <a class="btn btn-primary btn-round" asp-page="/TransactionPages/Transfer" asp-route-customerId="@Model.CustomerReference" asp-route-accountId="@Model.AccountId">Transfer</a>
                 <h1>Transactions</h1>
                 <h4>Account number: @Model.Account.Id</h4>
                 <h4>Current Balance: @Model.Account.Balance</h4>
