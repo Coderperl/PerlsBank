@@ -4,13 +4,21 @@
 }
 
 <div class="container">
-    <h1>Customers</h1>
-
-    <form method="get">
-        <input class="border-0 rounded px-5 mr-2 mb-5 " asp-for="@Model.Searchterm"/>
-        <input class="btn btn-primary px-3 py-2 border-0 rounded" type="submit" value="search"/>
-
+    <h1 class="my-5">Customers</h1>
+    <div class="d-flex justify-content-between">
+        <form method="get">
+            <div class="form-group mx-1 d-flex">
+            <input class="border-0 rounded font-weight-bold" asp-for="@Model.Searchterm" placeholder="Enter Name or city"/>
+            <input class="btn btn-primary px-3 py-2 mx-2 border-0 rounded" type="submit" value="search"/>
+            </div>
+        </form>
+    <form method="post" >
+        <div class="form-group mx-1 d-flex">
+            <input class="border-0 rounded pt-2" asp-for="CustomerId" class="form-group" />
+            <input class="btn btn-primary px-3 py-2 mx-2 border-0 rounded" type="submit" value="Enter Id"/>
+        </div>
     </form>
+    </div>
 
 <table class="table table-light table-responsive">
     <div class="container2 col-auto w-auto">

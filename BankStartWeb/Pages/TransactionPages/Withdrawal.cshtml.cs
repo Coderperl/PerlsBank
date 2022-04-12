@@ -55,6 +55,7 @@ public class WithdrawalModel : PageModel
             }
 
             Account.Transactions.Add(withdrawal);
+            Account.Balance -= Amount;
             _context.SaveChanges();
         }
 

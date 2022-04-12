@@ -2,6 +2,7 @@ using BankStartWeb.Data;
 using BankStartWeb.Infrastructure.Paging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankStartWeb.Pages
 {
@@ -35,6 +36,8 @@ namespace BankStartWeb.Pages
         public string SortOrder { get; set; }
         public string SortCol { get; set; }
         public int TotalPageCount { get; set; }
+        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
 
         public CustomersModel(ApplicationDbContext _context)
         {
@@ -58,79 +61,6 @@ namespace BankStartWeb.Pages
             cust = cust.OrderBy(col, order == "asc" ? ExtensionMethods.QuerySortOrder.Asc
                 : ExtensionMethods.QuerySortOrder.Desc);
 
-            //else if (col == "id")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.Id);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.Id);
-            //    }
-
-            //}
-            //else if (col == "NationalId")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.NationalId);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.NationalId);
-            //    }
-
-            //}
-            //else if (col == "firstname")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.Givenname);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.Givenname);
-            //    }
-
-            //}
-            //else if (col == "lastname")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.Surname);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.Surname);
-            //    }
-
-            //}
-            //else if (col == "city")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.City);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.City);
-            //    }
-
-            //}
-            //else if (col == "address")
-            //{
-            //    if (order == "asc")
-            //    {
-            //        cust = cust.OrderBy(word => word.Streetaddress);
-            //    }
-            //    else
-            //    {
-            //        cust = cust.OrderByDescending(word => word.Streetaddress);
-            //    }
-
-            //}
-
             var pagedResult = cust.GetPaged(PageNo, 20);
             TotalPageCount = pagedResult.PageCount;
 
@@ -147,7 +77,13 @@ namespace BankStartWeb.Pages
             }).ToList();
         }
 
-        
+        public IActionResult OnPost(int customerId)
+        {
+            Customer = context.Customers.First(c => c.Id == customerId);
+            CustomerId = customerId;
+
+            return RedirectToPage("/CustomerPages/Customer", new {customerId});
+        }
         
     }
 }
