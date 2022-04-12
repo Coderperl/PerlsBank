@@ -6,8 +6,10 @@
     <div class="row d-flex justify-content-center">
         <div class="col-xl-5 ">
             <div class="bg-white p-5 rounded mt-5">
-                <h1>Account number:@Model.AccountId</h1>
+                <h1>Withdrawal</h1>
+                <h4>Account number:@Model.AccountId</h4>
                 <form method="post">
+
                     <div class="form-group">
                         <label asp-for="Type">Cardtype</label>
                         <select class="form-control" asp-for="Type" asp-items="@Model.AllTypes"></select>
@@ -23,7 +25,7 @@
                         <input asp-for="Amount" class="form-group"/>
                         <span asp-validation-for="Amount"></span>
                     </div>
-                    <button class="btn btn-primary btn-round" type="submit" asp-route-customerId ="@Model.CustomerId"asp-route-accountId ="@Model.AccountId">Make a withdrawal</button>
+                    <button class="btn btn-primary btn-round" type="submit" asp-route-customerId="@Model.CustomerId"asp-route-accountId="@Model.AccountId">Make a withdrawal</button>
                 </form>
             </div>
         </div>

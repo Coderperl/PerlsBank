@@ -49,7 +49,7 @@ public class WithdrawalModel : PageModel
             if (withdrawal.NewBalance < 0)
             {
                 ModelState.AddModelError(nameof(Amount),
-                    "There is not enough money for withdrawal, please select a lesser amount.");
+                    "Insufficient funds");
                 SetSelectLists();
                 return Page();
             }
@@ -89,8 +89,8 @@ public class WithdrawalModel : PageModel
         {
             new()
             {
-                Text = "Transfer",
-                Value = "Transfer"
+                Text = "Payment",
+                Value = "Payment"
             },
             new()
             {
