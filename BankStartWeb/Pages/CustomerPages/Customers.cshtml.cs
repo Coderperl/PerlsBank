@@ -15,20 +15,11 @@ namespace BankStartWeb.Pages
             public string Surname { get; set; }
             public string Streetaddress { get; set; }
             public string City { get; set; }
-            public string Zipcode { get; set; }
-            public string Country { get; set; }
-            public string CountryCode { get; set; }
             public string NationalId { get; set; }
-            
-            public int TelephoneCountryCode { get; set; }
-            public string Telephone { get; set; }
-            
             public string EmailAddress { get; set; }
-            public DateTime Birthday { get; set; }
-
-            public List<Account> Accounts { get; set; } = new List<Account>();
-
+            
         }
+
         private readonly ApplicationDbContext context;
         public List<CustomersViewModel> Customers = new List<CustomersViewModel>();
         public string Searchterm { get; set; }
@@ -77,13 +68,5 @@ namespace BankStartWeb.Pages
             }).ToList();
         }
 
-        public IActionResult OnPost(int customerId)
-        {
-            Customer = context.Customers.First(c => c.Id == customerId);
-            CustomerId = customerId;
-
-            return RedirectToPage("/CustomerPages/Customer", new {customerId});
-        }
-        
     }
 }

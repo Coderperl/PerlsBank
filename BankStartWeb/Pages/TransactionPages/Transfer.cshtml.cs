@@ -50,6 +50,16 @@ namespace BankStartWeb.Pages.TransactionPages
                 Customer = _context.Customers.First(c => c.Id == customerId);
                 var senderAccount = _context.Accounts.Include(t => t.Transactions).First(a => a.Id == accountId);
                 var receiverAccount = _context.Accounts.Include(t => t.Transactions).First(a => a.Id == TransferId);
+
+                //var senderAccount = _context.Accounts.Find(accountId);
+                //var receiverAccount = _context.Accounts.Find(TransferId);
+
+                //if (senderAccount == null || receiverAccount == null)
+                //{
+                //    SetLists();
+                //    return Page();
+                //}
+                
                 var sender = new Transaction
                 {
                     Amount = Amount,
@@ -70,7 +80,6 @@ namespace BankStartWeb.Pages.TransactionPages
                 {
                     ModelState.AddModelError(nameof(Amount),
                         "Insufficient funds");
-                    
                 }
                 else {
                 senderAccount.Balance -= Amount;

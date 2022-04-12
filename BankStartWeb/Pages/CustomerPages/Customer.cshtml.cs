@@ -9,21 +9,8 @@ namespace BankStartWeb.Pages
     {
         private readonly ApplicationDbContext context;
 
-        public string Givenname { get; set; }
-        public string Surname { get; set; }
-        public string Streetaddress { get; set; }
-        public string City { get; set; }
-        public string Zipcode { get; set; }
-        public string Country { get; set; }
-        public string CountryCode { get; set; }
-        public string NationalId { get; set; }
-        public int TelephoneCountryCode { get; set; }
-        public string Telephone { get; set; }
-        public string EmailAddress { get; set; }
-        public DateTime Birthday { get; set; }
+        public List<AccountViewModel> Accounts { get; set; }
 
-        public List<AccountViewModel> Accounts { get; set; } 
-        
         public Customer Customer { get; set; }
 
         public class AccountViewModel
@@ -34,20 +21,22 @@ namespace BankStartWeb.Pages
             public DateTime Created { get; set; }
             public decimal Balance { get; set; }
 
-            public List<Transaction> Transactions { get; set; } = new List<Transaction>();
-
         }
 
         public CustomerModel(ApplicationDbContext _context)
         {
             context = _context;
         }
-        
 
-        public void OnGet(int customerId)
+
+        public IActionResult OnGet(int customerId)
         {
-            
-            Customer = context.Customers.Include(a => a.Accounts). First(c => c.Id == customerId);
+            Customer = context.Customers.Find(customerId);
+            //Customer = context.Customers.Include(a => a.Accounts).FirstOrDefault(c => c.Id == customerId);
+
+            if (Customer == default) return RedirectToPage("/CustomerPages/Customers");
+            context.Entry(Customer).Collection(c => c.Accounts).Load();
+
             Accounts = Customer.Accounts.Select(a => new AccountViewModel
             {
                 Id = a.Id,
@@ -57,8 +46,7 @@ namespace BankStartWeb.Pages
                 CustomerId = customerId,
 
             }).ToList();
-
-            
+            return Page();
         }
     }
 }
