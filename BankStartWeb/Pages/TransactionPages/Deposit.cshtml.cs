@@ -73,7 +73,7 @@ namespace BankStartWeb.Pages.Transactions
             AllOperations = new List<SelectListItem>()
             {
                 new SelectListItem {Text = "Deposit Cash", Value = "Deposit cash"},
-                
+                new SelectListItem {Text = "Salary", Value = "Salary"},
             };
         }
     }
