@@ -57,9 +57,7 @@ p {
 
 input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {
   box-shadow: none;
-  height: 45px;
-  outline: none;
-  font-size: 14px;
+    outline: none;
 }
 
 input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="tel"]:focus {

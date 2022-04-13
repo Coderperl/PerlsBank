@@ -6,6 +6,12 @@ body {
     background-repeat: repeat-y;
 }
 
+input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {
+    box-shadow: none;
+    height: auto;
+    outline: none;
+}
+
 .bg-img {
     background: url("../images/about/Norden_lights.jpg") no-repeat;
     background-size: cover;
@@ -18,3 +24,13 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+
+
+
+.search-input {
+    font-weight: bold;
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+

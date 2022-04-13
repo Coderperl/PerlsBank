@@ -21,7 +21,26 @@ public class DataInitializer
     public void SeedData()
     {
         _dbContext.Database.Migrate();
+
+        SeedRoles();
         SeedCustomers();
+        SeedUsers();
+    }
+
+    private void SeedUsers()
+    {
+        CreateUserIfNotExists();
+    }
+
+    private void CreateUserIfNotExists()
+    {
+        throw new NotImplementedException();
+    }
+
+
+    private void SeedRoles()
+    {
+        throw new NotImplementedException();
     }
 
     private void SeedCustomers()
@@ -83,7 +102,7 @@ public class DataInitializer
         }
 
 
-        else 
+        else
         {
             var testUser = new Faker<Customer>("fi")
                 .StrictMode(false)
@@ -103,12 +122,12 @@ public class DataInitializer
             person = testUser.Generate(1).First();
         }
 
-        for (int i = 0; i < random.Next(1, 5);i++)
+        for (int i = 0; i < random.Next(1, 5); i++)
         {
             person.Accounts.Add(GenerateAccount());
         }
 
-        
+
 
 
         return person;
@@ -117,7 +136,7 @@ public class DataInitializer
 
     private Account GenerateAccount()
     {
-        string[] accountType = {"Personal", "Checking", "Savings"};
+        string[] accountType = { "Personal", "Checking", "Savings" };
         var testUser = new Faker<Account>()
             .StrictMode(false)
             .RuleFor(e => e.Id, f => 0)
@@ -154,7 +173,7 @@ public class DataInitializer
                 account.Balance = account.Balance + tran.Amount;
                 if (r < 20)
                     tran.Operation = "Deposit cash";
-                else if(r < 66)
+                else if (r < 66)
                     tran.Operation = "Salary";
                 else
                     tran.Operation = "Transfer";

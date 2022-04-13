@@ -3,16 +3,14 @@
   background: $primary-color;
 }
 
-input[type="email"],input[type="password"],input[type="text"],input[type="tel"]{
+/*input[type="email"],input[type="password"],input[type="text"],input[type="tel"]{
   box-shadow:none;
-  height:45px;
   outline: none;
-  font-size:14px;
   &:focus {
     box-shadow: none;
     border:1px solid $primary-color;
   }
-}
+}*/
 
 
 .form-control {
