@@ -1,11 +1,13 @@
 using BankStartWeb.Data;
 using BankStartWeb.Infrastructure.Paging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankStartWeb.Pages
-{
+{   
+    [Authorize(Roles = "Admin,Cashier")]
     public class CustomersModel : PageModel
     {
         public class CustomersViewModel
