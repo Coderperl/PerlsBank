@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!doctype html>
 <html lang="en">
   <head>
   <!-- Required meta tags -->
@@ -33,12 +38,15 @@
 		  
 		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
 			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item">
-				<a class="nav-link" asp-area="" asp-page="/Index">Home</a>
-			  </li>
-			  <li class="nav-item">
-					<a class="nav-link" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>
-			  </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                </li>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>
+                </li>
+            }
                 <li>
                     <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                 </li">
