@@ -29,19 +29,51 @@ public class DataInitializer
 
     private void SeedUsers()
     {
-        CreateUserIfNotExists();
+        CreateUserIfNotExists("stefan.holmberg@systementor.se","Hejsan123#",
+            new []{"Admin"});
+        CreateUserIfNotExists("stefan.holmberg@customer.banken.se", "Hejsan123#",
+            new[] { "Cashier" });
+        CreateUserIfNotExists("Admin@Admin.se", "Hejsan123#",
+            new[] { "Admin" });
+        CreateUserIfNotExists("Cashier@Cashier.se", "Hejsan123#",
+            new[] { "Admin"});
+        CreateUserIfNotExists("SuperAdmin@Bank.se", "Hejsan123#",
+            new[] {"Admin","Cashier"});
     }
 
-    private void CreateUserIfNotExists()
+    private void CreateUserIfNotExists(string email, string password, string[] roles)
     {
-        throw new NotImplementedException();
+        if (_userManager.FindByEmailAsync(email).Result != null) return;
+
+        var user = new IdentityUser
+        {
+            UserName = email,
+            Email = email,
+            EmailConfirmed = true
+        };
+        _userManager.CreateAsync(user, password).Wait();
+        _userManager.AddToRolesAsync(user, roles).Wait();
     }
 
 
     private void SeedRoles()
     {
-        throw new NotImplementedException();
+        CreateRoleIfExists("Admin");
+        CreateRoleIfExists("Cashier");
     }
+
+    private void CreateRoleIfExists(string roleName)
+    {
+        if (_dbContext.Roles.Any(r => r.Name == roleName))
+            return;
+        _dbContext.Roles.Add(new IdentityRole
+        {
+            Name = roleName,
+            NormalizedName = roleName
+        });
+        _dbContext.SaveChanges();
+    }
+
 
     private void SeedCustomers()
     {

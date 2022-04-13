@@ -1,9 +1,18 @@
 ﻿html{
     scroll-behavior:smooth;
+    height: 100%;
+}
+footer {
+    position: absolute;
+    bottom: 0;
 }
 body {
     background-image: linear-gradient(#99a9d1, #ffffff);
-    background-repeat: repeat-y;
+   /* background-repeat: repeat-y;
+    background-size: cover;*/
+    background-attachment: fixed;
+    min-height: 100%;
+    position: relative;
 }
 
 input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {
