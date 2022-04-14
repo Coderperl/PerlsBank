@@ -1,4 +1,5 @@
 using BankStartWeb.Data;
+using BankStartWeb.Infrastructure.Paging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,12 +30,12 @@ namespace BankStartWeb.Pages
         public int AccountId { get; set; }
         public Account Account { get; set; }
         public Customer Customer { get; set; }
-        public List<TransactionsViewModel> Transactions { get; set; } 
+        public List<TransactionsViewModel> Transactions { get; set; }
         public void OnGet(int accountId, int customerId)
         {
-            
-            Account = context.Accounts.Include(t => t.Transactions).First(a => a.Id == accountId);
-            Transactions = Account.Transactions.Select(t => new TransactionsViewModel
+
+            Account = context.Accounts.Include(t => t.Transactions.OrderByDescending(x => x.Date)).First(a => a.Id == accountId);
+            Transactions = Account.Transactions.Take(5).Select(t => new TransactionsViewModel
             {
                 Id = accountId,
                 Type = t.Type,
@@ -44,10 +45,38 @@ namespace BankStartWeb.Pages
                 NewBalance = t.NewBalance
 
 
-            }).ToList().OrderByDescending(x => x.Date).ToList();
+            }).ToList();
             CustomerReference = customerId;
             AccountId = accountId;
         }
+
+        public IActionResult OnGetFetchMore (int accountId, int pageNo)
+        {
+            var query = context.Accounts.Where(e => e.Id == accountId)
+                    .SelectMany(e => e.Transactions)
+                    .OrderByDescending(e => e.Date)
+                ;
+            var transaction = query.GetPaged(pageNo, 5);
+
+            var list = transaction.Results.Select(t => new 
+            {
+                Id = accountId,
+                Type = t.Type,
+                Operation = t.Operation,
+                Amount = t.Amount,
+                Date = t.Date.ToString("g"),
+                NewBalance = t.NewBalance
+
+
+            }).ToList();
+            //CustomerReference = customerId;
+           
+
+            return new JsonResult(new { items = list });
+        }
+
+
+
 
         public IActionResult OnPostCustomer(int customerId)
         {

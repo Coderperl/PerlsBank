@@ -27,6 +27,11 @@ namespace BankStartWeb.Pages
             }
             return Math.Round(sum);
         }
+
+        public void GetAllTransactions()
+        {
+           
+        }
         public void OnGet()
         {
             Customers = _context.Customers.Select(c => new Customer()).ToList();

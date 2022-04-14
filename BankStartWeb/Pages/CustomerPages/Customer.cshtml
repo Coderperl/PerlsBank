@@ -3,25 +3,43 @@
 @{
 }
 @{
-                        decimal sum = 0;
-                    }
+    decimal sum = 0;
+}
 <a class="btn-primary btn-round p-2 d-flex justify-content-center" asp-page="/CustomerPages/Customers">Return to Customers</a>
 <div class="container2">
     <div class="row d-flex justify-content-center  ">
         <div class="col-xl-5 ">
             <div class="bg-white p-5 rounded mt-5 ">
-                <h1><strong>Customer</strong> @Model.Customer.Givenname @Model.Customer.Surname</h1>
-                <p><strong>Address:</strong> @Model.Customer.Streetaddress</p>
-                <p><strong>City:</strong> @Model.Customer.City</p>
-                <p><strong>Zip:</strong> @Model.Customer.Zipcode</p>
+                <h1>
+                    <strong>Customer</strong> @Model.Customer.Givenname @Model.Customer.Surname
+                </h1>
+                <p>
+                    <strong>Address:</strong> @Model.Customer.Streetaddress
+                </p>
+                <p>
+                    <strong>City:</strong> @Model.Customer.City
+                </p>
+                <p>
+                    <strong>Zip:</strong> @Model.Customer.Zipcode
+                </p>
                 <p><strong>Country</strong>: @Model.Customer.Country</p>
-                <p><strong>Country code:</strong> @Model.Customer.CountryCode</p>
-                <p><strong>NationalId:</strong>@Model.Customer.NationalId</p>
-                <p><strong>Telephone number:</strong> @Model.Customer.Telephone</p>
-                <p><strong>Birth date:</strong> @Model.Customer.Birthday</p>
-                <p><strong>Email Address:</strong> @Model.Customer.EmailAddress</p>
-               
-                
+                <p>
+                    <strong>Country code:</strong> @Model.Customer.CountryCode
+                </p>
+                <p>
+                    <strong>NationalId:</strong>@Model.Customer.NationalId
+                </p>
+                <p>
+                    <strong>Telephone number:</strong> @Model.Customer.Telephone
+                </p>
+                <p>
+                    <strong>Birth date:</strong> @Model.Customer.Birthday
+                </p>
+                <p>
+                    <strong>Email Address:</strong> @Model.Customer.EmailAddress
+                </p>
+
+
                 <table class="table table-sm">
 
                     <tr>
@@ -31,26 +49,24 @@
                         <th>Account created</th>
                     </tr>
 
-                    
+
                     @foreach (var account in Model.Accounts)
                     {
                         sum += account.Balance;
                         <tr>
-                            <td><a asp-page="/CustomerPages/Transactions" asp-route-customerId="@account.CustomerId" asp-route-accountId="@account.Id">@account.Id</a></td>
+                            <td>
+                                <a asp-page="/CustomerPages/Transactions" asp-route-customerId="@account.CustomerId" asp-route-accountId="@account.Id">@account.Id</a>
+                            </td>
                             <td>@account.AccountType</td>
                             <td>@account.Balance</td>
                             <td>@account.Created</td>
                         </tr>
-
                     }
-                     <h1>Total Balance: <span>@sum.ToString("C")</span></h1>
+                    <h1>Total Balance: <span>@sum.ToString("C")</span></h1>
                 </table>
-                
+
             </div>
 
         </div>
     </div>
 </div>
-
-
-
