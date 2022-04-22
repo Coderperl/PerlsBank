@@ -33,32 +33,19 @@ namespace BankStartWeb.Pages
         public List<TransactionsViewModel> Transactions { get; set; }
         public void OnGet(int accountId, int customerId)
         {
-
-            Account = context.Accounts.Include(t => t.Transactions.OrderByDescending(x => x.Date)).First(a => a.Id == accountId);
-            Transactions = Account.Transactions.Take(5).Select(t => new TransactionsViewModel
-            {
-                Id = accountId,
-                Type = t.Type,
-                Operation = t.Operation,
-                Amount = t.Amount,
-                Date = t.Date,
-                NewBalance = t.NewBalance
-
-
-            }).ToList();
-            CustomerReference = customerId;
-            AccountId = accountId;
+            GetTransactions(accountId, customerId);
         }
 
-        public IActionResult OnGetFetchMore (int accountId, int pageNo)
+        public IActionResult OnGetFetchMore(int customerId,int accountId, int pageNo)
         {
+            
             var query = context.Accounts.Where(e => e.Id == accountId)
                     .SelectMany(e => e.Transactions)
                     .OrderByDescending(e => e.Date)
                 ;
             var transaction = query.GetPaged(pageNo, 5);
 
-            var list = transaction.Results.Select(t => new 
+            var list = transaction.Results.Select(t => new
             {
                 Id = accountId,
                 Type = t.Type,
@@ -70,7 +57,8 @@ namespace BankStartWeb.Pages
 
             }).ToList();
             //CustomerReference = customerId;
-           
+
+
 
             return new JsonResult(new { items = list });
         }
@@ -82,7 +70,23 @@ namespace BankStartWeb.Pages
         {
             Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);
 
-            return RedirectToPage("CustomerPages/Customer", new {customerId});
+            return RedirectToPage("CustomerPages/Customer", new { customerId });
+        }
+        public void GetTransactions(int accountId, int customerId)
+        {
+            Account = context.Accounts.Include(t => t.Transactions.OrderByDescending(x => x.Date))
+                .First(a => a.Id == accountId);
+            Transactions = Account.Transactions.Take(5).Select(t => new TransactionsViewModel
+            {
+                Id = accountId,
+                Type = t.Type,
+                Operation = t.Operation,
+                Amount = t.Amount,
+                Date = t.Date,
+                NewBalance = t.NewBalance
+            }).ToList();
+            CustomerReference = customerId;
+            AccountId = accountId;
         }
     }
 }
