@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using BankStartWeb.Data;
+using BankStartWeb.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,10 +14,12 @@ namespace BankStartWeb.Pages.Transactions
     public class DepositModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly ITransactionServices _services;
 
-        public DepositModel(ApplicationDbContext context)
+        public DepositModel(ApplicationDbContext context, ITransactionServices services)
         {
             _context = context;
+            _services = services;
         }
 
         public string Operation { get; set; }
@@ -27,14 +30,10 @@ namespace BankStartWeb.Pages.Transactions
         public int AccountId { get; set; }
         public Account Account { get; set; }
         public Customer Customer { get; set; }
-        public List<SelectListItem> AllTypes { get; set; }
-        public List<SelectListItem> AllOperations { get; set; }
-
         public void OnGet(int accountId, int customerId)
         {
             AccountId = accountId;
             CustomerId = customerId;
-            SetSelectLists();
         }
 
         public IActionResult OnPost(int accountId, int customerId)
@@ -43,58 +42,19 @@ namespace BankStartWeb.Pages.Transactions
             {
                 Customer = _context.Customers.First(c => c.Id == customerId);
                 Account = _context.Accounts.Include(t => t.Transactions).First(a => a.Id == accountId);
-                Account.Transactions.Add(new Transaction
-                {
-                    Amount = Amount,
-                    Operation = Operation,
-                    Date = DateTime.Now,
-                    Type = Type,
-                    NewBalance = Account.Balance + Amount
-                });
-                if (Amount < 100)
+                var status = _services.Deposit(accountId,Amount);
+                if (status == ITransactionServices.Status.LowerThanZero)
                 {
                     ModelState.AddModelError(nameof(Amount),
-                        "Enter amount bigger than or 100");
-                    SetSelectLists();
+                        "Enter amount more than 0");
                     return Page();
                 }
                 Account.Balance += Amount;
-                
                 _context.SaveChanges();
                 return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
-            SetSelectLists();
             return Page();
-
-            //if (withdrawal.NewBalance < 0)
-            //{
-            //    ModelState.AddModelError(nameof(Amount),
-            //        "Insufficient funds");
-            //    SetSelectLists();
-            //    return Page();
-            //}
         }
-        public void SetSelectLists()
-        {
-            SetTypes();
-            SetOperations();
-        }
-        private void SetTypes()
-        {
-            AllTypes = new List<SelectListItem>()
-            {
-                new SelectListItem {Text = "Debit", Value = "Debit"},
-                new SelectListItem {Text = "Credit", Value = "Credit"}
-            };
-        }
-
-        private void SetOperations()
-        {
-            AllOperations = new List<SelectListItem>()
-            {
-                new SelectListItem {Text = "Deposit Cash", Value = "Deposit cash"},
-                new SelectListItem {Text = "Salary", Value = "Salary"},
-            };
-        }
+        
     }
 }
