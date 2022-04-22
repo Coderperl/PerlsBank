@@ -88,7 +88,6 @@ namespace BankStartWeb.Services
                 Type = "Transfer",
                 NewBalance = receiverAccount.Balance + amount
             };
-
             senderAccount.Balance -= amount;
             receiverAccount.Balance += amount;
             senderAccount.Transactions.Add(sender);

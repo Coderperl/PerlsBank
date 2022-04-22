@@ -54,6 +54,5 @@ namespace BankStartWeb.Pages.Transactions
             }
             return Page();
         }
-        
     }
 }

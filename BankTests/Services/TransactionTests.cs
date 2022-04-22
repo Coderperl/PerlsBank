@@ -38,8 +38,27 @@ namespace BankTests.Services
             };
             _context.Accounts.Add(a);
             _context.SaveChanges();
-            var status = _sut.Deposit(1, -1);
+            var status = _sut.Deposit(a.Id, -1);
             Assert.AreEqual(ITransactionServices.Status.LowerThanZero,status);
+        }
+        [TestMethod]
+        public void If_Deposit_Operation_Returns_Correct_Operation()
+        {
+            var a = new Account()
+            {
+                AccountType = "test",
+                Balance = 1000,
+                Created = DateTime.Now,
+                Id = 3,
+                Transactions = new()
+            };
+            _context.Accounts.Add(a);
+            _context.SaveChanges();
+            _sut.Deposit(a.Id, 100);
+            var transaction = a.Transactions.Last();
+            Assert.AreEqual("Deposit cash", transaction.Operation);
+
+
         }
         [TestMethod]
         public void If_Withdrawal_Negative_Amount_Should_Return_Below_Zero()
@@ -54,7 +73,7 @@ namespace BankTests.Services
             };
             _context.Accounts.Add(a);
             _context.SaveChanges();
-            var status = _sut.Withdrawal(2, -1);
+            var status = _sut.Withdrawal(a.Id, -1);
             Assert.AreEqual(ITransactionServices.Status.LowerThanZero, status);
         }
         [TestMethod]
@@ -65,13 +84,32 @@ namespace BankTests.Services
                 AccountType = "test",
                 Balance = 0,
                 Created = DateTime.Now,
-                Id = 3,
+                Id = 4,
                 Transactions = new()
             };
             _context.Accounts.Add(a);
             _context.SaveChanges();
-            var status = _sut.Withdrawal(3, 150);
+            var status = _sut.Withdrawal(a.Id, 150);
             Assert.AreEqual(ITransactionServices.Status.InsufficientFunds, status);
+        }
+        [TestMethod]
+        public void If_Withdrawal_Operation_Returns_Correct_Operation()
+        {
+            var a = new Account()
+            {
+                AccountType = "test",
+                Balance = 1000,
+                Created = DateTime.Now,
+                Id = 5,
+                Transactions = new()
+            };
+            _context.Accounts.Add(a);
+            _context.SaveChanges();
+            _sut.Withdrawal(a.Id, 100);
+            var transaction = a.Transactions.Last();
+            Assert.AreEqual("ATM withdrawal", transaction.Operation );
+
+
         }
 
 
