@@ -71,9 +71,9 @@ namespace BankStartWeb.Services
             var sender = new Transaction
             {
                 Amount = amount,
-                Operation = "Credit",
+                Operation = "Transfer",
                 Date = DateTime.Now,
-                Type = "Transfer",
+                Type = "Credit",
                 NewBalance = senderAccount.Balance - amount
             };
             if (amount > senderAccount.Balance)
@@ -83,9 +83,9 @@ namespace BankStartWeb.Services
             var reciever = new Transaction
             {
                 Amount = amount,
-                Operation = "Debit",
+                Operation = "Transfer",
                 Date = DateTime.Now,
-                Type = "Transfer",
+                Type = "Debit",
                 NewBalance = receiverAccount.Balance + amount
             };
             senderAccount.Balance -= amount;
