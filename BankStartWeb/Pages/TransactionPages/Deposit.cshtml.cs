@@ -24,7 +24,6 @@ namespace BankStartWeb.Pages.Transactions
 
         public string Operation { get; set; }
         public string Type { get; set; }
-        [Range(100, Int16.MaxValue, ErrorMessage = "Please deposit an amount not less than 100")]
         public decimal Amount { get; set; }
         public int CustomerId { get; set; }
         public int AccountId { get; set; }
@@ -49,8 +48,8 @@ namespace BankStartWeb.Pages.Transactions
                         "Enter amount more than 0");
                     return Page();
                 }
-                Account.Balance += Amount;
-                _context.SaveChanges();
+                //Account.Balance += Amount;
+                
                 return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
             return Page();

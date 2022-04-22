@@ -44,40 +44,25 @@ namespace BankStartWeb.Pages.Transactions
             {
                 Customer = _context.Customers.First(c => c.Id == customerId);
                 Account = _context.Accounts.Include(t => t.Transactions).First(a => a.Id == accountId);
-                //var withdrawal = new Transaction
-                //{
-                //    Amount = Amount,
-                //    Operation = Operation,
-                //    Date = DateTime.Now,
-                //    Type = Type,
-                //    NewBalance = Account.Balance - Amount
-                //};
                 var status = _services.Withdrawal(accountId, Amount);
-                if (status == ITransactionServices.Status.InsufficientFunds)
+                switch (status)
                 {
-                    ModelState.AddModelError(nameof(Amount),
-                        "Insufficient funds");
-                    
-                    return Page();
+                    case ITransactionServices.Status.InsufficientFunds:
+                        ModelState.AddModelError(nameof(Amount),
+                            "Insufficient funds");
+                        return Page();
+                    case ITransactionServices.Status.MinimumWithdrawal:
+                        ModelState.AddModelError(nameof(Amount),
+                            "Please enter an amount of 100 or more");
+                        return Page();
+                    case ITransactionServices.Status.LowerThanZero:
+                        ModelState.AddModelError(nameof(Amount),
+                            "Cannot withdrawal negative amounts.");
+                        return Page();
                 }
-                if (Amount < 100)
-                {
-                    ModelState.AddModelError(nameof(Amount),
-                        "Please enter an amount of 100 or more");
-                    
-                    return Page();
-                }
-
-                
-                Account.Balance -= Amount;
-                _context.SaveChanges();
                 return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
-           
             return Page();
-
         }
-
-       
     }
 }

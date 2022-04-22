@@ -4,12 +4,13 @@
     {
         public Status Deposit(int accountId, decimal amount);
         public Status Withdrawal(int accountId, decimal amount);
-        public Status Transfer(int accountId, decimal amount);
+        public Status Transfer(int accountId, int receiverId, decimal amount);
 
         public enum Status
         {
             Ok,
-            Error, 
+            MinimumWithdrawal, 
+            Error,
             LowerThanZero,
             InsufficientFunds
         }

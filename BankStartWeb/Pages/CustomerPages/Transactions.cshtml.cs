@@ -36,7 +36,7 @@ namespace BankStartWeb.Pages
             GetTransactions(accountId, customerId);
         }
 
-        public IActionResult OnGetFetchMore(int customerId,int accountId, int pageNo)
+        public IActionResult OnGetFetchMore(int accountId, int pageNo)
         {
             
             var query = context.Accounts.Where(e => e.Id == accountId)
@@ -53,24 +53,22 @@ namespace BankStartWeb.Pages
                 Amount = t.Amount,
                 Date = t.Date.ToString("g"),
                 NewBalance = t.NewBalance
-
+                
 
             }).ToList();
-            //CustomerReference = customerId;
-
-
-
             return new JsonResult(new { items = list });
         }
 
-
-
-
         public IActionResult OnPostCustomer(int customerId)
         {
-            Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);
+            if (ModelState.IsValid)
+            {
+                Customer = context.Customers.Include(a => a.Accounts).First(c => c.Id == customerId);
 
-            return RedirectToPage("CustomerPages/Customer", new { customerId });
+                return RedirectToPage("CustomerPages/Customer", new { customerId });
+            }
+
+            return Page();
         }
         public void GetTransactions(int accountId, int customerId)
         {

@@ -41,5 +41,39 @@ namespace BankTests.Services
             var status = _sut.Deposit(1, -1);
             Assert.AreEqual(ITransactionServices.Status.LowerThanZero,status);
         }
+        [TestMethod]
+        public void If_Withdrawal_Negative_Amount_Should_Return_Below_Zero()
+        {
+            var a = new Account()
+            {
+                AccountType = "test",
+                Balance = 1,
+                Created = DateTime.Now,
+                Id = 2,
+                Transactions = new()
+            };
+            _context.Accounts.Add(a);
+            _context.SaveChanges();
+            var status = _sut.Withdrawal(2, -1);
+            Assert.AreEqual(ITransactionServices.Status.LowerThanZero, status);
+        }
+        [TestMethod]
+        public void If_Withdrawal_Amount_To_Big_Should_Return_InsufficientFunds()
+        {
+            var a = new Account()
+            {
+                AccountType = "test",
+                Balance = 0,
+                Created = DateTime.Now,
+                Id = 3,
+                Transactions = new()
+            };
+            _context.Accounts.Add(a);
+            _context.SaveChanges();
+            var status = _sut.Withdrawal(3, 150);
+            Assert.AreEqual(ITransactionServices.Status.InsufficientFunds, status);
+        }
+
+
     }
 }
