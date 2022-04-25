@@ -31,7 +31,7 @@
 </head>
 <body>
     <header class="navigation ">
-    <nav class="navbar sticky-top navbar-expand-lg bg-black " id="navbar">
+    <nav class="navbar sticky-top navbar-expand-lg bg-black" id="navbar">
 		<div class="">
 		  <a class="nav-link " asp-area="" asp-page="/Index"><span class="h1 color-four">
              Scan<span class="text-white">Bank</span></span></a>
@@ -44,7 +44,15 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Customer Actions
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-area="" asp-page="/CustomerPages/Customers">List of Customers</a>
+                            <a class="dropdown-item" asp-area="" asp-page="/CustomerPages/NewCustomer">Add Customer</a>
+                        </div>
+                    </div>
                 </li>
             }
                 <li>

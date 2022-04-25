@@ -1,0 +1,71 @@
+﻿@page
+@model BankStartWeb.Pages.CustomerPages.NewCustomerModel
+@{
+}
+<div class="card container pt-5 my-5">
+    <div class="card-header">
+        <h1>New customer</h1>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Givenname">Firstname</label>
+                <input class="form-control" asp-for="Givenname">
+                <span asp-validation-for="Givenname" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname">Lastname</label>
+                <input class="form-control" asp-for="Surname">
+                <span asp-validation-for="Surname" class="field-validation-error"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="EmailAddress">Email</label>
+                <input class="form-control" asp-for="EmailAddress">
+                <span asp-validation-for="EmailAddress" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Streetaddress">Gatuadress</label>
+                <input class="form-control" asp-for="Streetaddress">
+                <span asp-validation-for="Streetaddress" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City">City</label>
+                <input class="form-control" asp-for="City">
+                <span asp-validation-for="City"  class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zipcode">Zipcode</label>
+                <input class="form-control" asp-for="Zipcode">
+                <span asp-validation-for="Zipcode"  class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country">Country</label>
+                <select class="form-control" asp-for="Country" asp-items="@Model.AllCountries">
+                </select>
+                <span asp-validation-for="Country" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone">Phone number</label>
+                <input class="form-control" asp-for="Telephone">
+                <span asp-validation-for="Telephone" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NationalId">Social security number</label>
+                <input class="form-control" asp-for="NationalId">
+                <span asp-validation-for="NationalId" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Birthday">Birthday</label>
+                <input class="form-control" asp-for="Birthday" >
+                <span asp-validation-for="Birthday" class="field-validation-error"></span>
+            </div>
+           
+
+            <button class="btn btn-primary"type="submit" class="btn">Save</button>
+
+        </form>
+
+    </div>
+</div>
