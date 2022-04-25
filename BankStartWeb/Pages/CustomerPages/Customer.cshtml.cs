@@ -14,6 +14,7 @@ namespace BankStartWeb.Pages
         public List<AccountViewModel> Accounts { get; set; }
 
         public Customer Customer { get; set; }
+        public int EditCustomerId { get; set; }
 
         public class AccountViewModel
         {
@@ -33,6 +34,7 @@ namespace BankStartWeb.Pages
 
         public IActionResult OnGet(int customerId)
         {
+            EditCustomerId = customerId;
             Customer = context.Customers.Find(customerId);
             //Customer = context.Customers.Include(a => a.Accounts).FirstOrDefault(c => c.Id == customerId);
 

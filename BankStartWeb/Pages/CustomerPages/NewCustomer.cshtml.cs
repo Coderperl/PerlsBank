@@ -10,8 +10,7 @@ namespace BankStartWeb.Pages.CustomerPages
     public class NewCustomerModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        private readonly DataInitializer _initializer;
-        public int Id { get; set; }
+        
         [MaxLength(50)] public string Givenname { get; set; }
         [MaxLength(50)] public string Surname { get; set; }
         [MaxLength(50)] public string Streetaddress { get; set; }
@@ -19,7 +18,8 @@ namespace BankStartWeb.Pages.CustomerPages
         [MaxLength(10)] public string Zipcode { get; set; }
         [MaxLength(30)] public string Country { get; set; }
         [MaxLength(2)] public string CountryCode { get; set; }
-        [MaxLength(20)] public string NationalId { get; set; }
+
+        [MinLength(8, ErrorMessage = "Please enter 8 digits")] public string NationalId { get; set; }
         [Range(0, 9999)]
         public int TelephoneCountryCode { get; set; }
         public string Telephone { get; set; }
@@ -30,26 +30,21 @@ namespace BankStartWeb.Pages.CustomerPages
 
         public List<Account> Accounts { get; set; } = new List<Account>();
         public List<SelectListItem> AllCountries { get; set; }
-        public List<SelectListItem> AllCountryCodes { get; set; }
-        public List<SelectListItem> AllTelephoneCountryCodes { get; set; }
+        //public List<SelectListItem> AllCountryCodes { get; set; }
+        //public List<SelectListItem> AllTelephoneCountryCodes { get; set; }
 
 
-        public NewCustomerModel(ApplicationDbContext context, DataInitializer initializer)
+        public NewCustomerModel(ApplicationDbContext context)
         {
             _context = context;
-            _initializer = initializer;
+            
         }
         public void OnGet()
         {
-            SetLists();
-        }
-
-        public void SetLists()
-        {
-            SetAllTelephoneCountryCodes();
-            SetAllCountryCodes();
             SetAllCountries();
         }
+
+        
         
 
         public IActionResult OnPost()
@@ -95,7 +90,7 @@ namespace BankStartWeb.Pages.CustomerPages
                 }
                 return RedirectToPage("/CustomerPages/Customers");
             }
-            SetLists();
+            SetAllCountries();
             return Page();
         }
 
@@ -159,49 +154,49 @@ namespace BankStartWeb.Pages.CustomerPages
             return account;
         }
 
-        public void SetAllTelephoneCountryCodes()
-        {
-            AllTelephoneCountryCodes = new List<SelectListItem>()
-            {
-                new SelectListItem()
-                {
-                    Text = "+46",
-                    Value = "46"
-                },
-                new SelectListItem()
-                {
-                    Text = "+47",
-                    Value = "47"
-                },
-                new SelectListItem()
-                {
-                    Text = "+48",
-                    Value = "48"
-                }
-            };
-        }
+        //public void SetAllTelephoneCountryCodes()
+        //{
+        //    AllTelephoneCountryCodes = new List<SelectListItem>()
+        //    {
+        //        new SelectListItem()
+        //        {
+        //            Text = "+46",
+        //            Value = "46"
+        //        },
+        //        new SelectListItem()
+        //        {
+        //            Text = "+47",
+        //            Value = "47"
+        //        },
+        //        new SelectListItem()
+        //        {
+        //            Text = "+48",
+        //            Value = "48"
+        //        }
+        //    };
+        //}
 
-        public void SetAllCountryCodes()
-        {
-            AllCountryCodes = new List<SelectListItem>()
-            {
-                new SelectListItem()
-                {
-                    Text = "SE",
-                    Value = "SE"
-                },
-                new SelectListItem()
-                {
-                    Text = "NO",
-                    Value = "NO"
-                },
-                new SelectListItem()
-                {
-                    Text = "FI",
-                    Value = "FI"
-                }
-            };
-        }
+        //public void SetAllCountryCodes()
+        //{
+        //    AllCountryCodes = new List<SelectListItem>()
+        //    {
+        //        new SelectListItem()
+        //        {
+        //            Text = "SE",
+        //            Value = "SE"
+        //        },
+        //        new SelectListItem()
+        //        {
+        //            Text = "NO",
+        //            Value = "NO"
+        //        },
+        //        new SelectListItem()
+        //        {
+        //            Text = "FI",
+        //            Value = "FI"
+        //        }
+        //    };
+        //}
 
         public void SetAllCountries()
         {
