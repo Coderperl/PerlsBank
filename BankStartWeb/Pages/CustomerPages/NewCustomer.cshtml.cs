@@ -10,7 +10,12 @@ namespace BankStartWeb.Pages.CustomerPages
     public class NewCustomerModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        
+        public NewCustomerModel(ApplicationDbContext context)
+        {
+            _context = context;
+
+        }
+
         [MaxLength(50)] public string Givenname { get; set; }
         [MaxLength(50)] public string Surname { get; set; }
         [MaxLength(50)] public string Streetaddress { get; set; }
@@ -27,25 +32,15 @@ namespace BankStartWeb.Pages.CustomerPages
         public string EmailAddress { get; set; }
         public DateTime Birthday { get; set; }
         private static Random random = new Random();
-
-        public List<Account> Accounts { get; set; } = new List<Account>();
         public List<SelectListItem> AllCountries { get; set; }
-        //public List<SelectListItem> AllCountryCodes { get; set; }
-        //public List<SelectListItem> AllTelephoneCountryCodes { get; set; }
+        
 
 
-        public NewCustomerModel(ApplicationDbContext context)
-        {
-            _context = context;
-            
-        }
+        
         public void OnGet()
         {
             SetAllCountries();
         }
-
-        
-        
 
         public IActionResult OnPost()
         {
@@ -80,11 +75,18 @@ namespace BankStartWeb.Pages.CustomerPages
                     customer.EmailAddress = EmailAddress;
                     customer.Telephone = Telephone;
                     customer.Birthday = Birthday;
-                    for (int i = 0; i < random.Next(1, 5); i++)
+                    //for (int i = 0; i < random.Next(1, 5); i++)
+                    //{
+                    //    customer.Accounts.Add(GenerateAccount());
+                    //}
+                    customer.Accounts = new List<Account>();
+                    customer.Accounts.Add(new Account
                     {
-                        customer.Accounts.Add(GenerateAccount());
-                    }
-
+                        AccountType = "Personal",
+                        Balance = 0,
+                        Created = DateTime.Now,
+                        Transactions = new List<Transaction>()
+                    });
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
                 }

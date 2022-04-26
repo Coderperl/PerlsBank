@@ -39,6 +39,8 @@ public class DataInitializer
             new[] { "Admin"});
         CreateUserIfNotExists("SuperAdmin@Bank.se", "Hejsan123#",
             new[] {"Admin","Cashier"});
+        CreateUserIfNotExists("Cashier@BankCashier.se", "Hejsan123#",
+            new[] { "Cashier" });
     }
 
     private void CreateUserIfNotExists(string email, string password, string[] roles)

@@ -1,0 +1,29 @@
+﻿@page
+@model BankStartWeb.Pages.AdminPages.SystemUsersModel
+@{
+}
+
+<h1>System Users</h1>
+<a class=""asp-page="/AdminPages/NewUser">Add new User</a>
+    <table class="table table-light table-responsive">
+        <div class="container2 col-auto w-auto">
+            <tr class="col-span-2">
+            <th>Email Address</th>
+            <th>UserName</th>
+        <th>Roles</th>
+        </tr>
+        
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.UserName</td>
+                @foreach (var role in user.UserRoles)
+                {
+                    <td>@role</td>
+                }
+            </tr>
+        }
+        </div>
+    </table>
+
