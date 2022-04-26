@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BankStartWeb.Pages.AdminPages
 {[BindProperties]
+    [Authorize(Roles = "Admin")]
     public class NewUserModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -38,14 +40,13 @@ namespace BankStartWeb.Pages.AdminPages
                     user.UserName = UserName;
                     user.Email = Email;
                     user.PasswordHash = Password;
-                    EmailConfirmed = true;
+                    user.EmailConfirmed = true;
                 };
-                
                 _userManager.CreateAsync(user, Password).Wait();
                 _userManager.AddToRolesAsync(user, Roles).Wait();
                 return RedirectToPage("/AdminPages/SystemUsers");
             }
-            
+            SetRoles();
             return Page();
         }
 

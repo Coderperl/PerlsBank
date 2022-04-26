@@ -2,28 +2,38 @@
 @model BankStartWeb.Pages.AdminPages.SystemUsersModel
 @{
 }
-
-<h1>System Users</h1>
-<a class=""asp-page="/AdminPages/NewUser">Add new User</a>
-    <table class="table table-light table-responsive">
-        <div class="container2 col-auto w-auto">
+<div class="container bg-white">
+    <div class="col-auto my-5 w-auto">
+        <h1 class="mb-5 mt-5">System Users</h1>
+        <a class="btn btn-primary btn-round" asp-page="/AdminPages/NewUser">Add new User</a>
+    </div>
+    <table class="table">
+        <div class="container2">
             <tr class="col-span-2">
-            <th>Email Address</th>
-            <th>UserName</th>
-        <th>Roles</th>
-        </tr>
-        
-        @foreach (var user in Model.Users)
-        {
-            <tr>
-                <td>@user.Email</td>
-                <td>@user.UserName</td>
-                @foreach (var role in user.UserRoles)
-                {
-                    <td>@role</td>
-                }
+                <th>Id</th>
+                <th>Email Address</th>
+                <th>UserName</th>
+                <th>Roles</th>
+                <th>Edit user</th>
             </tr>
-        }
+
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>
+                        @foreach (var role in user.UserRoles)
+                        {
+                            @(role != user.UserRoles.First() ? ", " : " ")@role
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="/AdminPages/EditUser" asp-route-userId="@user.Id">Edit</a>
+                    </td>
+                </tr>
+            }
         </div>
     </table>
-
+</div>
