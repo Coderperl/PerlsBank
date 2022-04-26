@@ -33,10 +33,6 @@ public class DataInitializer
             new []{"Admin"});
         CreateUserIfNotExists("stefan.holmberg@customer.banken.se", "Hejsan123#",
             new[] { "Cashier" });
-        CreateUserIfNotExists("Admin@Admin.se", "Hejsan123#",
-            new[] { "Admin" });
-        CreateUserIfNotExists("Cashier@Cashier.se", "Hejsan123#",
-            new[] { "Admin"});
         CreateUserIfNotExists("SuperAdmin@Bank.se", "Hejsan123#",
             new[] {"Admin","Cashier"});
         CreateUserIfNotExists("Cashier@BankCashier.se", "Hejsan123#",

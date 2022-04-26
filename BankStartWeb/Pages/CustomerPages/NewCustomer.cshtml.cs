@@ -79,7 +79,6 @@ namespace BankStartWeb.Pages.CustomerPages
                     //{
                     //    customer.Accounts.Add(GenerateAccount());
                     //}
-                    customer.Accounts = new List<Account>();
                     customer.Accounts.Add(new Account
                     {
                         AccountType = "Personal",
