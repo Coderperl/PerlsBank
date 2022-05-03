@@ -22,20 +22,15 @@ namespace BankStartWeb.Pages.CustomerPages
         [MaxLength(50)] public string City { get; set; }
         [MaxLength(10)] public string Zipcode { get; set; }
         [MaxLength(30)] public string Country { get; set; }
-        [MaxLength(2)] public string CountryCode { get; set; }
 
         [MinLength(8, ErrorMessage = "Please enter 8 digits")] public string NationalId { get; set; }
-        [Range(0, 9999)]
-        public int TelephoneCountryCode { get; set; }
+        [Range(0,10)]
         public string Telephone { get; set; }
         [MaxLength(50)]
         public string EmailAddress { get; set; }
         public DateTime Birthday { get; set; }
         private static Random random = new Random();
         public List<SelectListItem> AllCountries { get; set; }
-        
-
-
         
         public void OnGet()
         {
@@ -75,17 +70,10 @@ namespace BankStartWeb.Pages.CustomerPages
                     customer.EmailAddress = EmailAddress;
                     customer.Telephone = Telephone;
                     customer.Birthday = Birthday;
-                    //for (int i = 0; i < random.Next(1, 5); i++)
-                    //{
-                    //    customer.Accounts.Add(GenerateAccount());
-                    //}
-                    customer.Accounts.Add(new Account
+                    for (int i = 0; i < random.Next(1, 5); i++)
                     {
-                        AccountType = "Personal",
-                        Balance = 0,
-                        Created = DateTime.Now,
-                        Transactions = new List<Transaction>()
-                    });
+                        customer.Accounts.Add(GenerateAccount());
+                    }
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
                 }

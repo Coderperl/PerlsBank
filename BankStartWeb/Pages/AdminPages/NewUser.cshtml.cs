@@ -20,6 +20,7 @@ namespace BankStartWeb.Pages.AdminPages
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
         public bool EmailConfirmed { get; set; }
         public IList<string> Roles { get; set; }
 

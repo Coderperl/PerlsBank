@@ -32,16 +32,21 @@ namespace BankStartWeb.Pages
         {
            
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/CustomerPages/Customers");
+            }
+            
             Customers = _context.Customers.Select(c => new Customer()).ToList();
             Transactions = _context.Transactions.Select(t => new Transaction()).ToList();
             Accounts = _context.Accounts.Select(a => new Account
             {
                 Balance = a.Balance,
             }).ToList();
-            
-                
+            return Page();
+
         }
     }
 }

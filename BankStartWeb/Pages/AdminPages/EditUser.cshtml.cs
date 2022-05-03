@@ -20,7 +20,6 @@ public class EditUserModel : PageModel
     public string UserName { get; set; }
     public string Email { get; set; }
     [DataType(DataType.Password)] public string Password { get; set; }
-    public bool EmailConfirmed { get; set; }
     public IList<string> Roles { get; set; }
     public List<SelectListItem> AllRoles { get; set; }
 
@@ -42,7 +41,9 @@ public class EditUserModel : PageModel
         {
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             {
-                _userManager.RemoveFromRolesAsync(user, Roles).Wait();
+                var roles = _userManager.GetRolesAsync(user).Result;
+                _userManager.RemoveFromRolesAsync(user, roles).Wait();
+                _userManager.UpdateAsync(user).Wait();
                 user.UserName = UserName;
                 user.Email = Email;
                 Password = user.PasswordHash;
