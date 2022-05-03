@@ -17,9 +17,15 @@ public class EditUserModel : PageModel
     }
 
     public string UserId { get; set; }
+
+    [Required(ErrorMessage = "Please enter a username that is the same as Email")]
     public string UserName { get; set; }
+    [Required(ErrorMessage = "Please enter an Email-address")]
     public string Email { get; set; }
-    [DataType(DataType.Password)] public string Password { get; set; }
+    [DataType(DataType.Password)]
+    [Required(ErrorMessage = "Please enter a password with atleast 8 characters.")]
+    public string Password { get; set; }
+    [Required(ErrorMessage = "Please select atleast one role.")]
     public IList<string> Roles { get; set; }
     public List<SelectListItem> AllRoles { get; set; }
 
@@ -30,14 +36,18 @@ public class EditUserModel : PageModel
         UserName = user.UserName;
         Email = user.Email;
         Password = user.PasswordHash;
-
         SetRoles();
     }
 
     public IActionResult OnPost(string userId)
     {
-
-        if (ModelState.IsValid)
+        if (Roles.Count == 0)
+        {
+            ModelState.AddModelError(nameof(Roles),"Please select atleast one role.");
+            SetRoles();
+            return Page();
+        }
+        if(ModelState.IsValid)
         {
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             {
@@ -52,7 +62,6 @@ public class EditUserModel : PageModel
             }
             return RedirectToPage("/AdminPages/SystemUsers");
         }
-        SetRoles();
         return Page();
     }
 

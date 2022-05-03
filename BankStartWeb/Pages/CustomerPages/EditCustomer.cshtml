@@ -3,12 +3,9 @@
 @{
 }
 
-<div class="card container pt-5 my-5">
-    <div class="card-header">
-        <h1>Edit customer</h1>
-    </div>
-    <div class="card-body">
-        <form method="post">
+<div class="container bg-white p-5 my-5">
+    <h1>Edit customer</h1>
+    <form method="post">
             <div class="form-group">
                 <label asp-for="Givenname">Firstname</label>
                 <input class="form-control" asp-for="Givenname">
@@ -61,11 +58,6 @@
                 <input class="form-control" asp-for="Birthday" >
                 <span asp-validation-for="Birthday" class="field-validation-error"></span>
             </div>
-           
-
-            <button class="btn btn-primary"type="submit" class="btn">Save</button>
-
+            <button class="btn btn-primary btn-round"type="submit" class="btn">Save</button>
         </form>
-
-    </div>
 </div>

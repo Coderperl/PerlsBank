@@ -8,11 +8,14 @@ footer {
 }
 body {
     background-image: linear-gradient(#99a9d1, #ffffff);
-   /* background-repeat: repeat-y;
-    background-size: cover;*/
     background-attachment: fixed;
     min-height: 100%;
     position: relative;
+}
+
+
+.field-validation-error.error-text {
+    color: red;
 }
 
 input[type="email"], input[type="password"], input[type="text"], input[type="tel"] {

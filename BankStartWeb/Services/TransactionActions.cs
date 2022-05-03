@@ -29,11 +29,7 @@ namespace BankStartWeb.Services
                 NewBalance = account.Balance + amount
             });
             account.Balance += amount;
-            if (_context.SaveChanges() > 0)
-            {
-                return ITransactionServices.Status.Ok;
-            }
-            return ITransactionServices.Status.Error;
+            return _context.SaveChanges() > 0 ? ITransactionServices.Status.Ok : ITransactionServices.Status.Error;
         }
 
         public ITransactionServices.Status Withdrawal(int accountId, decimal amount)

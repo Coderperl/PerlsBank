@@ -16,15 +16,42 @@ namespace BankStartWeb.Pages.CustomerPages
             _context = context;
         }
 
-        [MaxLength(50)] public string Givenname { get; set; }
-        [MaxLength(50)] public string Surname { get; set; }
-        [MaxLength(50)] public string Streetaddress { get; set; }
-        [MaxLength(50)] public string City { get; set; }
-        [MaxLength(10)] public string Zipcode { get; set; }
-        [MaxLength(30)] public string Country { get; set; }
-        [MinLength(8)] public string NationalId { get; set; }
+        [Required(ErrorMessage = "Please enter First name.")]
+        [MaxLength(50)]
+        [BindProperty]
+        public string Givenname { get; set; }
+        [Required(ErrorMessage = "Please enter Last name.")]
+        [MaxLength(50)]
+        [BindProperty]
+        public string Surname { get; set; }
+        [Required(ErrorMessage = "Please enter a valid street address.")]
+        [MaxLength(50)]
+        [BindProperty]
+        public string Streetaddress { get; set; }
+        [Required(ErrorMessage = "Please enter City.")]
+        [MaxLength(50)]
+        [BindProperty]
+        public string City { get; set; }
+        [Required(ErrorMessage = "Please enter Zipcode.")]
+        [MaxLength(10)]
+        [BindProperty]
+        public string Zipcode { get; set; }
+        public string Country { get; set; }
+
+        [Required(ErrorMessage = "Please enter social security number.")]
+        [MinLength(8, ErrorMessage = "Please enter 8 digits")]
+        [BindProperty]
+        public string NationalId { get; set; }
+        [Range(0, 10)]
+        [Required(ErrorMessage = "Please enter a phone number.")]
+        [BindProperty]
         public string Telephone { get; set; }
-        [MaxLength(50)] public string EmailAddress { get; set; }
+        [MaxLength(50)]
+        [Required(ErrorMessage = "Please enter an Email-address.")]
+        [BindProperty]
+        public string EmailAddress { get; set; }
+        [Required(ErrorMessage = "Please enter birthdate.")]
+        [BindProperty]
         public DateTime Birthday { get; set; }
         private static Random random = new Random();
         public List<SelectListItem> AllCountries { get; set; }
