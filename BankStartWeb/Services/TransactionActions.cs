@@ -51,9 +51,13 @@ namespace BankStartWeb.Services
                 Type = "Credit",
                 NewBalance = account.Balance - amount
             });
+            if (amount > account.Balance)
+            {
+                return ITransactionServices.Status.InsufficientFunds;
+            }
             account.Balance -= amount;
             _context.SaveChanges();
-            return amount > account.Balance ? ITransactionServices.Status.InsufficientFunds : ITransactionServices.Status.Ok;
+            return ITransactionServices.Status.Ok;
         }
 
         public ITransactionServices.Status Transfer(int thisAccountId, int receiverAccountId, decimal amount)
@@ -72,6 +76,10 @@ namespace BankStartWeb.Services
                 Type = "Credit",
                 NewBalance = senderAccount.Balance - amount
             };
+            if (senderAccount == receiverAccount)
+            {
+                return ITransactionServices.Status.Error;
+            }
             if (amount > senderAccount.Balance)
             {
                 return ITransactionServices.Status.InsufficientFunds;

@@ -31,7 +31,7 @@ namespace BankStartWeb.Pages.AdminPages
         public void OnGet(string userId)
         {
             
-            Users = _userManager.Users.Select(u => new UserViewModel()
+            Users = _userManager.Users.ToList().Select(u => new UserViewModel()
             {
                 UserId = userId,
                 Id = u.Id,

@@ -29,7 +29,8 @@ namespace BankStartWeb.Pages.AdminPages
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please enter a password with atleast 8 characters.")]
         public string Password { get; set; }
-
+        [BindProperty]
+        [Required(ErrorMessage = "Please enter a role.")]
         public IList<string> Roles { get; set; }
 
 

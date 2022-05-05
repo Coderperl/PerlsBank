@@ -33,14 +33,14 @@ namespace BankStartWeb.Pages.CustomerPages
         [Required(ErrorMessage = "Please enter Zipcode.")]
         [MaxLength(10)]
         [BindProperty]
-        public string Zipcode { get; set; } 
+        public string Zipcode { get; set; }
+        [BindProperty]
         public string Country { get; set; }
 
         [Required(ErrorMessage = "Please enter social security number.")]
         [MinLength(8, ErrorMessage = "Please enter 8 digits")] 
         [BindProperty]
         public string NationalId { get; set; }
-        [Range(0,10)]
         [Required(ErrorMessage = "Please enter a phone number.")]
         [BindProperty]
         public string Telephone { get; set; }

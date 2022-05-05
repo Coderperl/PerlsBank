@@ -46,7 +46,7 @@
                     </li>
                 }
                
-                @if (SignInManager.IsSignedIn(User))
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin") || User.IsInRole("Cashier"))
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/CustomerPages/Customers">Customers</a>

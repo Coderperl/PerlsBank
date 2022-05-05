@@ -56,6 +56,12 @@ namespace BankStartWeb.Pages.TransactionPages
                         "Insufficient funds");
                     return Page();
                 }
+                if (status == ITransactionServices.Status.Error)
+                {
+                    ModelState.AddModelError(nameof(TransferId),
+                        "Please select another account.");
+                    return Page();
+                }
                 if (status == ITransactionServices.Status.LowerThanZero)
                 {
                     ModelState.AddModelError(nameof(Amount),
