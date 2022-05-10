@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using NToastNotify;
 
 namespace BankStartWeb.Pages.AdminPages;
 
@@ -10,10 +11,12 @@ namespace BankStartWeb.Pages.AdminPages;
 public class EditUserModel : PageModel
 {
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IToastNotification _toastNotification;
 
-    public EditUserModel(UserManager<IdentityUser> userManager)
+    public EditUserModel(UserManager<IdentityUser> userManager, IToastNotification toastNotification)
     {
         _userManager = userManager;
+        _toastNotification = toastNotification;
     }
 
     public string UserId { get; set; }
@@ -60,6 +63,7 @@ public class EditUserModel : PageModel
                 _userManager.AddToRolesAsync(user, Roles).Wait();
                 _userManager.UpdateAsync(user).Wait();
             }
+            _toastNotification.AddSuccessToastMessage("User edit successful.");
             return RedirectToPage("/AdminPages/SystemUsers");
         }
         return Page();

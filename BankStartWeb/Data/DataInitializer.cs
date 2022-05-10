@@ -21,7 +21,6 @@ public class DataInitializer
     public void SeedData()
     {
         _dbContext.Database.Migrate();
-
         SeedRoles();
         SeedCustomers();
         SeedUsers();
@@ -156,10 +155,6 @@ public class DataInitializer
         {
             person.Accounts.Add(GenerateAccount());
         }
-
-
-
-
         return person;
     }
 

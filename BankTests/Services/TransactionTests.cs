@@ -22,7 +22,7 @@ namespace BankTests.Services
             _context = new ApplicationDbContext(options);
             _sut = new TransactionActions(_context);
         }
-
+        
         [TestMethod]
         public void If_Deposit_Negative_Amount_Should_Return_Below_Zero()
         {
@@ -180,7 +180,6 @@ namespace BankTests.Services
             var senderTransaction = sender.Transactions.Last();
             var receiverTransaction = receiver.Transactions.Last();
             
-
             Assert.AreEqual("Transfer", senderTransaction.Operation);
             Assert.AreEqual("Transfer", receiverTransaction.Operation);
         }

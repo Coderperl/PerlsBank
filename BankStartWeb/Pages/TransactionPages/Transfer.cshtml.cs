@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 namespace BankStartWeb.Pages.TransactionPages
 {   
@@ -15,11 +16,13 @@ namespace BankStartWeb.Pages.TransactionPages
     {
         private readonly ApplicationDbContext _context;
         private readonly ITransactionServices _services;
+        private readonly IToastNotification _toastNotification;
 
-        public TransferModel(ApplicationDbContext context, ITransactionServices services)
+        public TransferModel(ApplicationDbContext context, ITransactionServices services,IToastNotification toastNotification)
         {
             _context = context;
             _services = services;
+            _toastNotification = toastNotification;
         }
         public int AccountId { get; set; }
         [Range(1,Int16.MaxValue, ErrorMessage = "Invalid account number")]
@@ -68,6 +71,7 @@ namespace BankStartWeb.Pages.TransactionPages
                         "You cannot transfer a negative amount.");
                     return Page();
                 }
+                _toastNotification.AddSuccessToastMessage("Successful transfer");
                 return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
             return Page();

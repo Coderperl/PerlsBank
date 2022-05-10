@@ -4,15 +4,19 @@ using Bogus;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 namespace BankStartWeb.Pages.CustomerPages
 {
     public class NewCustomerModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        public NewCustomerModel(ApplicationDbContext context)
+        private readonly IToastNotification _toastNotification;
+
+        public NewCustomerModel(ApplicationDbContext context, IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
         [Required(ErrorMessage = "Please enter First name.")]
         [MaxLength(50)]
@@ -100,6 +104,7 @@ namespace BankStartWeb.Pages.CustomerPages
                     }
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
+                    _toastNotification.AddSuccessToastMessage("New customer added.");
                     return RedirectToPage("/CustomerPages/Customers");
                 }
                

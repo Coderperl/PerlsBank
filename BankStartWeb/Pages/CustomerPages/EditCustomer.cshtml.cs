@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 namespace BankStartWeb.Pages.CustomerPages
 {[BindProperties]
     public class EditCustomerModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IToastNotification _toastNotification;
 
-        public EditCustomerModel(ApplicationDbContext context)
+        public EditCustomerModel(ApplicationDbContext context, IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
 
         [Required(ErrorMessage = "Please enter First name.")]
@@ -111,6 +114,7 @@ namespace BankStartWeb.Pages.CustomerPages
                     customer.Birthday = Birthday;
                     _context.SaveChanges();
                 }
+                _toastNotification.AddSuccessToastMessage("Customer edit succesful.");
                 return RedirectToPage("/CustomerPages/Customer");
             }
             SetAllCountries();

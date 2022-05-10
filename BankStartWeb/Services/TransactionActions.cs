@@ -15,7 +15,7 @@ namespace BankStartWeb.Services
         }
         public ITransactionServices.Status Deposit(int accountId, decimal amount)
         {
-            if (amount < 0)
+            if (amount <= 0)
             {
                 return ITransactionServices.Status.LowerThanZero;
             }
@@ -62,7 +62,7 @@ namespace BankStartWeb.Services
 
         public ITransactionServices.Status Transfer(int thisAccountId, int receiverAccountId, decimal amount)
         {
-            if (amount < 0)
+            if (amount <= 0)
             {
                 return ITransactionServices.Status.LowerThanZero;
             }

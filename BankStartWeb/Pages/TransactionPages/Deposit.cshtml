@@ -13,7 +13,7 @@
                 <form method="post">
                     <div class="form-group">
                         <label class="d-flex" asp-for="Amount">Amount</label>
-                        <input asp-for="Amount" class="form-group"/>
+                        <input asp-for="Amount" min="100" class="form-group"/>
                         <span class="d-block text-danger" asp-validation-for="Amount"></span>
                     </div>
                     <button class="btn btn-primary p-3 btn-round" type="submit" asp-route-customerId="@Model.CustomerId"asp-route-accountId="@Model.AccountId">Make deposit</button>

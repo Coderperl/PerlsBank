@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 namespace BankStartWeb.Pages.Transactions
 {
@@ -15,11 +16,13 @@ namespace BankStartWeb.Pages.Transactions
     {
         private readonly ApplicationDbContext _context;
         private readonly ITransactionServices _services;
+        private readonly IToastNotification _toastNotification;
 
-        public WithdrawalModel(ApplicationDbContext context,ITransactionServices services)
+        public WithdrawalModel(ApplicationDbContext context,ITransactionServices services, IToastNotification toastNotification)
         {
             _context = context;
             _services = services;
+            _toastNotification = toastNotification;
         }
 
         public int AccountId { get; set; }
@@ -60,6 +63,7 @@ namespace BankStartWeb.Pages.Transactions
                             "Cannot withdrawal negative amounts.");
                         return Page();
                 }
+                _toastNotification.AddSuccessToastMessage("Successful Withdrawal");
                 return RedirectToPage("/CustomerPages/Customer", new { customerId });
             }
             return Page();

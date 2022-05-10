@@ -6,18 +6,17 @@
     decimal sum = 0;
 }
 
-<div class="container2">
+<div class="container-2">
     <div class="row d-flex justify-content-center  ">
         <div class="col-xl-5 ">
             <div class="bg-white p-5 rounded mt-5 ">
-                <div class="d-flex mt-4">
+                <div class="d-flex justify-content-evenly m-2">
                     <a class="btn-primary btn-round p-1 justify-content-center" asp-page="/CustomerPages/Customers">Return to Customers</a>
-                </div>
-                <div class="d-flex mt-4">
-                    <a class="btn-primary btn-round p-1 justify-content-center" asp-page="/CustomerPages/EditCustomer" asp-route-customerId="@Model.EditCustomerId">Change information</a>
+                    
+                    <a class="btn-primary btn-round p-1 mx-2 justify-content-center" asp-page="/CustomerPages/EditCustomer" asp-route-customerId="@Model.EditCustomerId">Change information</a>
                 </div>
                 <h1>
-                    <strong>Customer</strong> @Model.Customer.Givenname @Model.Customer.Surname
+                     @Model.Customer.Givenname @Model.Customer.Surname
                 </h1>
                 <p>
                     <strong>Address:</strong> @Model.Customer.Streetaddress
@@ -33,7 +32,7 @@
                     <strong>Country code:</strong> @Model.Customer.CountryCode
                 </p>
                 <p>
-                    <strong>NationalId:</strong>@Model.Customer.NationalId
+                    <strong>NationalId:</strong> @Model.Customer.NationalId
                 </p>
                 <p>
                     <strong>Telephone number:</strong> @Model.Customer.Telephone
