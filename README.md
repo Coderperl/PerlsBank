@@ -1,8 +1,8 @@
 # PerlsBank
 Full stack application of a fictional bank. 
 
-My most advanced aplication to date. A bank administration system, where cashiers, and admin users can use "Bank" functionality, built in crud functionality.
-Admin and cashiers are roles that are authorized to actually use the functionality.
+My most advanced aplication to date. A bank administration system, there are two registered roles, cashier, and admin. 
+Please read below for specific role functionality.
 
 Cashier functionality: 
 -Ability to see all registered customers.
