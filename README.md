@@ -6,18 +6,28 @@ Admin and cashiers are roles that are authorized to actually use the functionali
 
 Cashier functionality: 
 -Ability to see all registered customers.
+
 -Ability to enter an Id in input, and instantly being transfered to that customers profile.
+
 -Ability to search by name and city.
+
 -Ability to sort customers via header.
+
 -Making transactions of type deposit, withdrawal, and transfer.
+
 -See all the accounts of selected customer, and all the transactions made to, and from selected account. 
+
 -Adding new customers whith built in algorithm to automatically generate accounts with some transactions.
+
 -Editing customers, changing the customers personal information.
 
 Admin functionality:
 -Is authorized to do the same actions as cashier, but has ability to administer users.
+
 -Ability to see all registered users.
+
 -Ability to create new users, and assign them roles.
+
 -Ability to edit users, (username, Email, Password, Role).
 
 The application is currently deployed to azure,
