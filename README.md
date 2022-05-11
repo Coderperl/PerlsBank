@@ -5,6 +5,7 @@ My most advanced aplication to date. A bank administration system, there are two
 Please read below for specific role functionality.
 
 Cashier functionality: 
+
 -Ability to see all registered customers.
 
 -Ability to enter an Id in input, and instantly being transfered to that customers profile.
@@ -22,6 +23,7 @@ Cashier functionality:
 -Editing customers, changing the customers personal information.
 
 Admin functionality:
+
 -Is authorized to do the same actions as cashier, but has ability to administer users.
 
 -Ability to see all registered users.
