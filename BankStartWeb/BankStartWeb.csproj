@@ -226,6 +226,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\bootstrap\css\" />
     <Folder Include="wwwroot\css\maps\" />
   </ItemGroup>
 

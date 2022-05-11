@@ -87,12 +87,16 @@
     </div>
 </footer>
 
+
 <!-- Main jQuery -->
 <script src="/plugins/jquery/jquery.js"></script>
 <script src="/js/contact.js"></script>
 <!-- Bootstrap 4.3.1 -->
-<script src="/plugins/bootstrap/js/popper.js"></script>
-<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/bootstrap/js/popper.js"></script>
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 <!--  Magnific Popup-->
 <script src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <!-- Slick Slider -->
@@ -101,6 +105,8 @@
 <script src="/plugins/counterup/jquery.waypoints.min.js"></script>
 <script src="/plugins/counterup/jquery.counterup.min.js"></script>
 
+
+<script src="~/js/site.js" asp-append-version="true"></script>
 <script src="/js/script.js"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
